@@ -1,14 +1,188 @@
+
+Search chats
+Students
+Images
+Library
+Gems
+New notebook
+Modern Air and Rail Transport Systems
+Mastering Exponential Algebra: 15 Practice Problems Explained
+All notebooks
+Materi Transportasi Udara dan Rel
+Revisi Maskot dan Playground Pokemon
+Revisi Web Resep Bertema Pokémon
+Pembuatan Web Resep Pokémon
+Presentasi Transportasi Udara dan Kereta
+Permintaan Pembuatan Slide Presentasi
+Pemeriksaan Tugas Simulasi Excel
+Fungsi Rumus POWER di Excel
+Langkah Membuat Kajian Pustaka
+Minimalist Blank Exchange
+Deep Dive Into ISU Global
+Permintaan Transkrip Video YouTube
+Panduan Pembuatan Custom Gem YouTube
+Persiapan Belajar dari YouTube
+Requesting YouTube Video Transcript Analysis
+YouTube Learning Companion Setup
+Understanding Gems: Stones and AI
+Widyatama Era Majapahit
+Generator Pertanyaan Kritis Kelas
+Pembuat Pertanyaan Kritis Kelas
+Sapaan Awal
+Sapaan Awal
+Untitled
+Manfaat Penelitian Praktis Organisasi
+Perhitungan Kebutuhan Mesin Milling
+Perbandingan Harga Meja Kursi Sekolah
+Pengertian Churn dalam E-commerce Berlangganan
+Jawaban Soal Ujian
+Conversation with Gemini
+revisi coding ini, eevelutions mascot berjalan tambahkan ke playground dan pokemon pokemon di playgorund masukan ke mascot berjalan
+
+Python
+# Baca source file untuk memastikan modifikasi file HTML
+with open('dapur_resep_baking_eevolution.html', 'r', encoding='utf-8') as f:
+    html_content = f.read()
+
+# Modifikasi:
+# 1. Masukkan semua Pokémon Eevolution dan Playground Friends ke dalam satu daftar gabungan
+# 2. Tambahkan fitur Mascot Berjalan agar bisa menampilkan beberapa Pokémon sekaligus berjalan di bawah (atau bergantian/berjalan bersama)
+# 3. Sesuaikan Pokémon di Playground & Mascot Picker sesuai permintaan user.
+
+print("File loaded successfully, size:", len(html_content))
+
+Code output
+File loaded successfully, size: 56230
+
+Python
+# Mari kita modifikasi file dapur_resep_baking_eevolution.html sesuai instruksi:
+# User minta: "revisi coding ini, eevelutions mascot berjalan tambahkan ke playground dan pokemon pokemon di playgorund masukan ke mascot berjalan"
+#
+# Artinya:
+# 1. POKEMON_CHEFS (Eeveelutions) & PLAYGROUND_FRIENDS digabung / disilangkan sehingga:
+#    - Semua Eeveelutions juga bisa ditambahkan ke Playground (Playground sekarang punya Eeveelutions + Pokemon lain).
+#    - Semua Pokémon yang ada di Playground (Pikachu, Charmander, dll) juga bisa dipilih jadi Mascot Berjalan di bagian bawah.
+# 2. Kita satukan daftar monster utama (ALL_POKEMON_LIST) yang dipakai baik oleh Mascot Berjalan maupun Playground.
+
+new_script_section = """
+        // ALL ANIMATED PIXEL SPRITES DATA (EEVEELUTIONS + FRIENDS)
+        const ALL_POKEMON_LIST = [
+            // Eeveelutions
+            { id: 'eevee', name: 'Eevee', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif', quote: 'Vee-vee! Aku lagi jalan-jalan di dapur! 🧁' },
+            { id: 'vaporeon', name: 'Vaporeon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/134.gif', quote: 'Vapor-vapor! Bikin dessert dingin yuk! 🍧' },
+            { id: 'jolteon', name: 'Jolteon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/135.gif', quote: 'Jolt-jolt! Baking kilat super cepat! ⚡' },
+            { id: 'flareon', name: 'Flareon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/136.gif', quote: 'Flare-flare! Ovennya sudah hangat pas! ♨️' },
+            { id: 'espeon', name: 'Espeon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/196.gif', quote: 'Espe-espe! Hasil baking manis sekali! ✨' },
+            { id: 'umbreon', name: 'Umbreon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/197.gif', quote: 'Umb-umb! Camilan cookies malam hari! 🍪' },
+            { id: 'leafeon', name: 'Leafeon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/470.gif', quote: 'Leaf-leaf! Aroma matcha harum sekali! 🍵' },
+            { id: 'glaceon', name: 'Glaceon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/471.gif', quote: 'Glace-glace! Es krim cake sudah jadi! 🍦' },
+            { id: 'sylveon', name: 'Sylveon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/700.gif', quote: 'Sylv-sylv! Hiasan kuelnya cantik banget! 🎀' },
+            // Extra 8-Bit Playground & Mascot Friends
+            { id: 'pikachu', name: 'Pikachu', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif', quote: 'Pika-pika! Resep ini berenergi tinggi! ⚡' },
+            { id: 'charmander', name: 'Charmander', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif', quote: 'Char-char! Api kompor sudah siap! 🔥' },
+            { id: 'squirtle', name: 'Squirtle', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/7.gif', quote: 'Squirtle! Cuci piring dapur sampai bersih! 🌊' },
+            { id: 'bulbasaur', name: 'Bulbasaur', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif', quote: 'Saur-saur! Buah berry segar siap dipetik! 🍃' },
+            { id: 'jigglypuff', name: 'Jigglypuff', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/39.gif', quote: 'Jiggly-puff! Kue bolu ini lembut seperti lagu! 🎶' },
+            { id: 'snorlax', name: 'Snorlax', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/143.gif', quote: 'Zzz... Kue keringnya sudah matang belum? 🥐' },
+            { id: 'gengar', name: 'Gengar', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/94.gif', quote: 'Hehehe! Permen hantu yang manis & misterius! 👻' },
+            { id: 'togepi', name: 'Togepi', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/175.gif', quote: 'Chirri-Chirri! Kue renyah pembawa keberuntungan! 🥚' }
+        ];
+
+        const POKEMON_CHEFS = ALL_POKEMON_LIST.filter(p => ['eevee','vaporeon','jolteon','flareon','espeon','umbreon','leafeon','glaceon','sylveon'].includes(p.id));
+        const PLAYGROUND_FRIENDS = ALL_POKEMON_LIST;
+"""
+
+# Gantilah bagian definisi POKEMON_CHEFS & PLAYGROUND_FRIENDS di file
+import re
+
+with open('dapur_resep_baking_eevolution.html', 'r', encoding='utf-8') as f:
+    content = f.read()
+
+pattern = re.compile(r'// ALL ANIMATED PIXEL SPRITES DATA.*?const PLAYGROUND_FRIENDS = \[.*?\];', re.DOTALL)
+updated_content = pattern.sub(new_script_section.strip(), content)
+
+# Ubah teks pendorong pada Mascot Picker
+updated_content = updated_content.replace(
+    '<span class="text-[10px] font-extrabold text-custom-main uppercase tracking-wider">MASCOT WALKING (BAWAH):</span>',
+    '<span class="text-[10px] font-extrabold text-custom-main uppercase tracking-wider">MASCOT WALKING (BEBAS PILIH EEVEELUTIONS & FRIEND):</span>'
+)
+
+# Sesuaikan renderMascotPicker agar menampilkan seluruh ALL_POKEMON_LIST untuk mascot berjalan di bawah
+old_mascot_picker = """function renderMascotPicker() {
+            const container = document.getElementById('mascotPicker');
+            container.innerHTML = POKEMON_CHEFS.map((p, idx) => `
+                <button onclick="changeLiveMascot(${idx})" class="w-10 h-10 rounded-2xl border border-custom flex items-center justify-center p-1 hover:scale-110 transition bg-custom-secondary shadow-sm shrink-0 ${currentMascotIndex === idx ? 'ring-2 ring-custom-primary' : ''}">
+                    <img src="${p.img}" class="w-full h-full object-contain pixelated">
+                </button>
+            `).join('');
+        }"""
+
+new_mascot_picker = """function renderMascotPicker() {
+            const container = document.getElementById('mascotPicker');
+            container.innerHTML = ALL_POKEMON_LIST.map((p, idx) => `
+                <button onclick="changeLiveMascot(${idx})" title="${p.name}" class="w-10 h-10 rounded-2xl border border-custom flex items-center justify-center p-1 hover:scale-110 transition bg-custom-secondary shadow-sm shrink-0 ${currentMascotIndex === idx ? 'ring-2 ring-custom-primary' : ''}">
+                    <img src="${p.img}" class="w-full h-full object-contain pixelated">
+                </button>
+            `).join('');
+        }"""
+
+updated_content = updated_content.replace(old_mascot_picker, new_mascot_picker)
+
+# Sesuaikan changeLiveMascot & interactMascot agar menggunakan ALL_POKEMON_LIST
+old_change = "const mascot = POKEMON_CHEFS[index];"
+new_change = "const mascot = ALL_POKEMON_LIST[index];"
+updated_content = updated_content.replace(old_change, new_change)
+
+old_interact = "const mascot = POKEMON_CHEFS[currentMascotIndex];"
+new_interact = "const mascot = ALL_POKEMON_LIST[currentMascotIndex];"
+updated_content = updated_content.replace(old_interact, new_interact)
+
+with open('dapur_resep_baking_eevolution.html', 'w', encoding='utf-8') as f:
+    f.write(updated_content)
+
+print("HTML file successfully revised and updated!")
+
+Code output
+HTML file successfully revised and updated!
+
+Revisi kode HTML untuk aplikasi Dapur Resep Baking Eevolution telah selesai diperbarui.
+
+HTML icon
+dapur_resep_baking_eevolution
+ HTML 
+Perubahan yang telah diterapkan:
+
+Eeveelutions di Playground: Seluruh keluarga Eeveelution (Eevee, Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, Glaceon, Sylveon) kini dapat dipanggil dan ditambahkan ke area Playground.
+
+Pokémon Playground sebagai Mascot Berjalan: Seluruh Pokémon dari Playground (seperti Pikachu, Charmander, Squirtle, Bulbasaur, Jigglypuff, Snorlax, Gengar, Togepi) sekarang telah dimasukkan ke daftar pilihan mascot berjalan di layar bagian bawah.
+
+Mascot Picker Terpadu: Menu pemilih mascot di bagian hero banner sekarang menampilkan seluruh koleksi Pokémon secara dinamis untuk dipilih sebagai maskot yang berjalan di bawah layar.
+
+codenya mana biar aku salin
+
+Mohon maaf, sepertinya Anda belum menyebutkan kode atau program apa yang ingin dibuat atau ditanyakan.
+
+Bisa tolong jelaskan kembali kode apa yang Anda butuhkan (misalnya: kode Python untuk analisis data, script HTML/CSS, fungsi tertentu, dll.)? Setelah Anda memberitahukannya, saya akan langsung buatkan kodenya agar bisa Anda salin.
+
+
+
+
+Your Universitas Widyatama chats aren’t used to improve our models. Gemini is AI and can make mistakes. Your privacy & GeminiOpens in a new window
+
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="theme-eev">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dapur Resep Baking Pokemon 🧁✨</title>
+    <title>Dapur Resep Baking Eevolution 🧁✨ - 8-Bit Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
+        /* Theme Palettes Dynamic Variables */
+        .theme-eev {
             --bg-main: #FAF5EF;
             --bg-card: #FFFFFF;
             --primary: #8C533A;
@@ -17,15 +191,70 @@
             --text-primary: #4A2B1E;
             --border-color: #E3D1BE;
             --accent-glow: rgba(140, 83, 58, 0.15);
+            --header-accent: #E8D5C4;
+        }
+
+        .theme-pika {
+            --bg-main: #FFFDF0;
+            --bg-card: #FFFFFF;
+            --primary: #D98200;
+            --primary-hover: #B56C00;
+            --secondary-bg: #FFF4C2;
+            --text-primary: #4A3300;
+            --border-color: #F0DA82;
+            --accent-glow: rgba(217, 130, 0, 0.18);
+            --header-accent: #FFEBA3;
+        }
+
+        .theme-lavender {
+            --bg-main: #F8F5FF;
+            --bg-card: #FFFFFF;
+            --primary: #8B5CF6;
+            --primary-hover: #7C3AED;
+            --secondary-bg: #EDE9FE;
+            --text-primary: #3B0764;
+            --border-color: #DDD6FE;
+            --accent-glow: rgba(139, 92, 246, 0.15);
+            --header-accent: #E0E7FF;
+        }
+
+        .theme-cerulean {
+            --bg-main: #F0FDFA;
+            --bg-card: #FFFFFF;
+            --primary: #0D9488;
+            --primary-hover: #0F766E;
+            --secondary-bg: #CCFBF1;
+            --text-primary: #134E4A;
+            --border-color: #99F6E4;
+            --accent-glow: rgba(13, 148, 136, 0.15);
+            --header-accent: #BFEFEA;
+        }
+
+        .theme-gb {
+            --bg-main: #E0F8D0;
+            --bg-card: #8BAC0F;
+            --primary: #0F380F;
+            --primary-hover: #306230;
+            --secondary-bg: #9BBC0F;
+            --text-primary: #0F380F;
+            --border-color: #306230;
+            --accent-glow: rgba(15, 56, 15, 0.2);
+            --header-accent: #8BAC0F;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-main);
             color: var(--text-primary);
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
+        
         h1, h2, h3, .font-fun {
             font-family: 'Fredoka', cursive;
+        }
+
+        .font-pixel {
+            font-family: 'Press Start 2P', monospace;
         }
 
         .bg-custom-card { background-color: var(--bg-card); }
@@ -53,14 +282,19 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
 
-        /* ANIMASI MOVEMENT CONTAINER */
+        /* Pixelated style untuk sprite retro */
+        .pixelated {
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        /* ANIMASI MOVING MONSTERS */
         @keyframes walkContainer {
             0% { transform: translateX(0); }
             50% { transform: translateX(calc(100vw - 120px)); }
             100% { transform: translateX(0); }
         }
 
-        /* ANIMASI SPRITE GAMBAR (PEMBALIKAN ARAH JALAN) */
         @keyframes flipSprite {
             0%, 49.9% { transform: scaleX(1); }
             50%, 99.9% { transform: scaleX(-1); }
@@ -68,65 +302,111 @@
         }
 
         .walking-container-anim {
-            animation: walkContainer 20s linear infinite;
+            animation: walkContainer 22s linear infinite;
         }
 
         .walking-sprite-anim {
-            animation: flipSprite 20s infinite;
+            animation: flipSprite 22s infinite;
         }
 
         @keyframes mascotBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-18px); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-24px) scale(1.15); }
         }
 
         .mascot-bounce {
             animation: mascotBounce 0.4s ease-in-out;
         }
 
-        /* Pixelated style untuk sprite retro */
-        .pixelated {
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
+        /* Float Roaming Pokémon Animations */
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+
+        /* Active Theme Selection Border */
+        .theme-active {
+            ring: 3px;
+            box-shadow: 0 0 10px var(--primary);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col relative overflow-x-hidden pb-20">
-
-    <!-- Audio Element -->
-    <audio id="bgMusic" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="clickSound">
-        <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
-    </audio>
+<body class="min-h-screen flex flex-col relative overflow-x-hidden pb-24">
 
     <!-- Header Navbar -->
-    <header class="bg-custom-card border-b-2 border-custom sticky top-0 z-40 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 py-3.5 flex flex-wrap justify-between items-center gap-3">
+    <header class="bg-custom-card border-b-2 border-custom sticky top-0 z-40 shadow-sm transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
             <div class="flex items-center gap-3">
                 <div class="bg-custom-secondary p-2 rounded-2xl border border-custom flex items-center justify-center w-11 h-11 shadow-sm">
                     <span class="text-2xl">🧁</span>
                 </div>
                 <div>
-                    <h1 class="text-xl md:text-2xl font-bold tracking-wide text-custom-main font-fun leading-tight">
-                        Dapur Resep Baking Eevolution
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide text-custom-main font-fun leading-tight flex items-center gap-2">
+                        Dapur Resep Baking Eevolution <span class="text-[10px] font-pixel bg-custom-secondary text-custom-primary px-2 py-0.5 rounded-md border border-custom">8-BIT</span>
                     </h1>
-                    <p class="text-[11px] text-custom-primary font-bold">Resep Manis & Lucu Bersama Eeveelutions ✨</p>
+                    <p class="text-[11px] text-custom-primary font-bold">Resep Manis & Lucu Bersama Eeveelutions & Friends ✨</p>
                 </div>
             </div>
             
-            <div class="flex items-center gap-2">
-                <button onclick="toggleMusic()" id="musicToggleBtn" class="bg-custom-secondary hover:bg-opacity-80 text-custom-main px-3.5 py-2 rounded-2xl text-xs font-bold border border-custom flex items-center gap-2 transition shadow-sm">
-                    <span id="musicIcon">🎵</span> <span id="musicStatusText">Musik: OFF</span>
+            <div class="flex items-center gap-2 flex-wrap">
+                <!-- Chiptune Synth Player Control -->
+                <div class="bg-custom-secondary border border-custom rounded-2xl p-1 px-3 flex items-center gap-2 shadow-sm">
+                    <button onclick="toggleChiptuneMusic()" id="chipMusicBtn" class="text-custom-main hover:scale-110 transition text-sm font-bold flex items-center gap-1.5">
+                        <span id="chipMusicIcon">▶️️</span> <span class="text-xs hidden sm:inline" id="chipMusicText">8-Bit BGM</span>
+                    </button>
+                    
+                    <select id="bgmSelect" onchange="changeChiptuneTrack(this.value)" class="bg-custom-card border border-custom text-[11px] rounded-xl px-2 py-1 text-custom-main font-bold focus:outline-none cursor-pointer">
+                        <option value="pallet">Pallet Town 8-Bit</option>
+                        <option value="center">Pokémon Center</option>
+                        <option value="route1">Route 1 Melody</option>
+                    </select>
+
+                    <input type="range" id="bgmVolume" min="0" max="1" step="0.05" value="0.2" oninput="setChiptuneVolume(this.value)" class="w-12 h-1.5 accent-custom-primary cursor-pointer" title="Volume Musik">
+                </div>
+
+                <!-- Theme Switcher Trigger -->
+                <button onclick="toggleThemeMenu()" class="bg-custom-secondary hover:bg-opacity-80 text-custom-main px-3 py-2 rounded-2xl text-xs font-bold border border-custom flex items-center gap-1.5 transition shadow-sm">
+                    🎨 <span class="hidden md:inline">Tema</span>
                 </button>
 
-                <button onclick="openTimerWidget()" class="bg-custom-secondary hover:bg-opacity-80 text-custom-main px-3.5 py-2 rounded-2xl text-xs font-bold border border-custom flex items-center gap-1.5 transition shadow-sm">
+                <button onclick="openTimerWidget()" class="bg-custom-secondary hover:bg-opacity-80 text-custom-main px-3 py-2 rounded-2xl text-xs font-bold border border-custom flex items-center gap-1.5 transition shadow-sm">
                     ⏲️ <span class="hidden sm:inline">Timer</span>
                 </button>
 
-                <button onclick="openModal()" class="bg-custom-primary text-white font-bold px-4 py-2 rounded-2xl shadow-md text-xs transition flex items-center gap-1.5 hover:scale-105">
+                <button onclick="openModal()" class="bg-custom-primary text-white font-bold px-3.5 py-2 rounded-2xl shadow-md text-xs transition flex items-center gap-1.5 hover:scale-105">
                     <i class="fa-solid fa-plus"></i> Resep Baru
+                </button>
+            </div>
+        </div>
+
+        <!-- Popover Theme Selector Dropdown -->
+        <div id="themeDropdown" class="hidden absolute right-4 top-16 bg-custom-card border-2 border-custom rounded-3xl p-4 shadow-2xl z-50 w-72 backdrop-blur-md">
+            <h4 class="text-xs font-bold text-custom-main font-fun uppercase tracking-wider mb-3 flex items-center gap-1">
+                <span>🎨</span> Pilih Warna Tema 8-Bit:
+            </h4>
+            <div class="grid grid-cols-1 gap-2">
+                <button onclick="setTheme('eev')" class="flex items-center justify-between p-2 rounded-2xl border border-custom hover:opacity-90 bg-[#FAF5EF] text-[#4A2B1E] text-xs font-bold">
+                    <span>🐻 Eevolution Pastels</span>
+                    <span class="w-4 h-4 rounded-full bg-[#8C533A] inline-block border border-white"></span>
+                </button>
+                <button onclick="setTheme('pika')" class="flex items-center justify-between p-2 rounded-2xl border border-custom hover:opacity-90 bg-[#FFFDF0] text-[#4A3300] text-xs font-bold">
+                    <span>⚡ Kanto Yellow / Pikachu</span>
+                    <span class="w-4 h-4 rounded-full bg-[#D98200] inline-block border border-white"></span>
+                </button>
+                <button onclick="setTheme('lavender')" class="flex items-center justify-between p-2 rounded-2xl border border-custom hover:opacity-90 bg-[#F8F5FF] text-[#3B0764] text-xs font-bold">
+                    <span>👻 Lavender / Psychic</span>
+                    <span class="w-4 h-4 rounded-full bg-[#8B5CF6] inline-block border border-white"></span>
+                </button>
+                <button onclick="setTheme('cerulean')" class="flex items-center justify-between p-2 rounded-2xl border border-custom hover:opacity-90 bg-[#F0FDFA] text-[#134E4A] text-xs font-bold">
+                    <span>🌊 Cerulean / Cyan Water</span>
+                    <span class="w-4 h-4 rounded-full bg-[#0D9488] inline-block border border-white"></span>
+                </button>
+                <button onclick="setTheme('gb')" class="flex items-center justify-between p-2 rounded-2xl border border-custom hover:opacity-90 bg-[#E0F8D0] text-[#0F380F] text-xs font-bold">
+                    <span>👾 Classic Game Boy DMG</span>
+                    <span class="w-4 h-4 rounded-full bg-[#0F380F] inline-block border border-white"></span>
                 </button>
             </div>
         </div>
@@ -135,25 +415,48 @@
     <!-- Main Content -->
     <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full z-10">
 
-        <!-- Banner Hero -->
-        <div class="bg-custom-secondary rounded-3xl p-5 md:p-6 mb-7 border border-custom shadow-sm bg-dots flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <!-- Banner Hero & Mascot Picker -->
+        <div class="bg-custom-secondary rounded-3xl p-5 md:p-6 mb-6 border border-custom shadow-sm bg-dots flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden transition-colors duration-300">
             <div class="space-y-2 text-center md:text-left z-10">
-                <span class="bg-custom-primary text-white text-[10px] uppercase font-extrabold px-3.5 py-1 rounded-full shadow-sm tracking-wider">KHUSUS EEVEE & 8 EEVEELUTIONS 🐻✨</span>
-                <h2 class="text-2xl md:text-3xl font-bold text-custom-main font-fun mt-1 leading-tight">Dapur Resep Baking Eevolution</h2>
-                <p class="text-xs text-custom-primary font-semibold max-w-md">Pilih Eevolution favoritmu untuk jalan-jalan di layar!</p>
+                <span class="bg-custom-primary text-white text-[10px] uppercase font-extrabold px-3.5 py-1 rounded-full shadow-sm tracking-wider font-pixel">RETRO BAKING EDITION 🧁</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-custom-main font-fun mt-1 leading-tight">Dapur Baking Pokémon 8-Bit</h2>
+                <p class="text-xs text-custom-primary font-semibold max-w-md">Pilih Eevolution untuk jalan-jalan di layar bawah atau panggil teman 8-bit ke Playground!</p>
             </div>
             
             <!-- Mascot Picker -->
             <div class="z-10 bg-custom-card/90 backdrop-blur-md p-3 rounded-2xl border border-custom shadow-sm flex flex-col items-center md:items-start gap-2 max-w-full">
-                <span class="text-[10px] font-extrabold text-custom-main uppercase tracking-wider">PILIH EEVELUTION BERJALAN:</span>
+                <span class="text-[10px] font-extrabold text-custom-main uppercase tracking-wider">MASCOT WALKING (BEBAS PILIH EEVEELUTIONS & FRIEND):</span>
                 <div class="flex gap-2 overflow-x-auto py-1 max-w-xs sm:max-w-md custom-scrollbar" id="mascotPicker">
                     <!-- Rendered Dynamically -->
                 </div>
             </div>
         </div>
 
+        <!-- 8-BIT POKÉMON PLAYGROUND (ADD/SPAWN ROAMING FRIENDS) -->
+        <div class="bg-custom-card p-4 rounded-3xl border border-custom shadow-sm mb-7 transition-colors duration-300">
+            <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">🎮</span>
+                    <h3 class="text-sm font-bold text-custom-main font-fun uppercase tracking-wider">Pokémon 8-Bit Playground</h3>
+                </div>
+                <span class="text-[11px] text-custom-primary font-bold">Klik Pokémon untuk berinteraksi! 🔊</span>
+            </div>
+
+            <!-- Active Roaming Pokémon Field -->
+            <div id="playgroundField" class="bg-custom-secondary rounded-2xl p-4 border border-custom min-h-[90px] relative flex flex-wrap items-center justify-start gap-4 overflow-hidden">
+                <!-- Dynamically Spawning Pixel Pokemon Cards -->
+            </div>
+
+            <div class="mt-3 flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar">
+                <span class="text-[10px] font-extrabold text-custom-main uppercase whitespace-nowrap">PANGGAL TEMAN:</span>
+                <div id="availablePlaygroundMonsters" class="flex items-center gap-1.5">
+                    <!-- Dynamic Pokemon Spawn Buttons -->
+                </div>
+            </div>
+        </div>
+
         <!-- Search & Filter -->
-        <div class="bg-custom-card p-4 rounded-3xl shadow-sm border border-custom mb-7 flex flex-col md:flex-row gap-4 justify-between items-center">
+        <div class="bg-custom-card p-4 rounded-3xl shadow-sm border border-custom mb-7 flex flex-col md:flex-row gap-4 justify-between items-center transition-colors duration-300">
             <div class="relative w-full md:w-80">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-sm"></i>
                 <input type="text" id="searchInput" oninput="renderRecipes()" placeholder="Cari resep kue atau bahan..." class="w-full pl-10 pr-4 py-2.5 bg-custom-secondary border border-custom rounded-2xl focus:outline-none focus:ring-2 focus:ring-custom-primary text-xs font-semibold">
@@ -185,20 +488,20 @@
     <!-- Pokémon Berjalan Interaktif Tanpa Teks Terbalik -->
     <div id="walkingContainer" class="fixed bottom-0 left-0 w-full pointer-events-none z-30 h-24 overflow-hidden">
         <div id="walkingMascot" class="walking-container-anim pointer-events-auto cursor-pointer absolute bottom-1 flex flex-col items-center" onclick="interactMascot()">
-            <!-- Bubble Teks (Bebas dari Efek Scale Mirror) -->
+            <!-- Bubble Teks -->
             <div id="mascotBubble" class="bg-custom-card border border-custom shadow-xl px-3 py-1 rounded-2xl text-[11px] font-bold text-custom-main mb-1 whitespace-nowrap flex items-center gap-1.5 transition-all">
                 <span id="bubbleText">Vee-vee! Aku lagi jalan-jalan di dapur! 🧁</span>
             </div>
-            <!-- Gambar Sprite Pokémon (Mengalami pembalikan animasi) -->
+            <!-- Gambar Sprite Pokémon -->
             <img id="walkingSprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" class="w-14 h-14 object-contain pixelated walking-sprite-anim">
         </div>
     </div>
 
     <!-- Baking Timer Widget -->
-    <div id="timerWidget" class="fixed bottom-5 left-5 bg-custom-card border border-custom rounded-3xl shadow-2xl p-4.5 z-50 flex flex-col gap-3 min-w-[270px]">
+    <div id="timerWidget" class="fixed bottom-5 left-5 bg-custom-card border border-custom rounded-3xl shadow-2xl p-4.5 z-50 flex flex-col gap-3 min-w-[270px] hidden">
         <div class="flex justify-between items-center border-b border-custom pb-2.5">
             <span class="text-xs font-bold text-custom-main flex items-center gap-1.5">
-                <span>⏲️</span> Baking Timer
+                <span>⏲️</span> Baking Timer 8-Bit
             </span>
             <button onclick="closeTimerWidget()" class="text-slate-400 hover:text-slate-600 text-xs font-bold">✕</button>
         </div>
@@ -314,8 +617,175 @@
     </div>
 
     <script>
-        // DAFTAR ANIMATED PIXEL SPRITES EEVEE & EEVEELUTIONS
-        const POKEMON_CHEFS = [
+        // Web Audio API Retro 8-Bit Chiptune Synthesizer Engine
+        class RetroChiptuneAudio {
+            constructor() {
+                this.ctx = null;
+                this.isPlaying = false;
+                this.currentTrack = 'pallet';
+                this.timer = null;
+                this.step = 0;
+                this.masterGain = null;
+                this.volume = 0.2;
+            }
+
+            initCtx() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContext();
+                    this.masterGain = this.ctx.createGain();
+                    this.masterGain.gain.value = this.volume;
+                    this.masterGain.connect(this.ctx.destination);
+                }
+                if (this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+
+            // Play Retro 8-bit Tone
+            playTone(freq, duration, type = 'square') {
+                if (!this.ctx || freq <= 0) return;
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const noteGain = this.ctx.createGain();
+
+                    osc.type = type; // square/triangle for 8bit
+                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+                    noteGain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+                    noteGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+
+                    osc.connect(noteGain);
+                    noteGain.connect(this.masterGain);
+
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + duration);
+                } catch(e) {}
+            }
+
+            // Sound Effects Generator (8-bit)
+            playSFX(type) {
+                this.initCtx();
+                const now = this.ctx.currentTime;
+                
+                if (type === 'click') {
+                    this.playTone(523.25, 0.06, 'square'); // C5 bleep
+                } else if (type === 'bounce') {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.exponentialRampToValueAtTime(800, now + 0.15);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.15);
+                    osc.connect(gain);
+                    gain.connect(this.masterGain);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                } else if (type === 'fanfare') {
+                    const notes = [261.63, 329.63, 392.00, 523.25];
+                    notes.forEach((f, i) => {
+                        setTimeout(() => this.playTone(f, 0.15, 'triangle'), i * 80);
+                    });
+                } else if (type === 'delete') {
+                    this.playTone(200, 0.15, 'sawtooth');
+                }
+            }
+
+            setVolume(v) {
+                this.volume = parseFloat(v);
+                if (this.masterGain) {
+                    this.masterGain.gain.value = this.volume;
+                }
+            }
+
+            // Melodies definitions (Note Frequencies)
+            // C4=261.63, D4=293.66, E4=329.63, F4=349.23, G4=392.00, A4=440.00, B4=493.88, C5=523.25, D5=587.33, E5=659.25
+            getNotesForTrack(track) {
+                if (track === 'center') {
+                    return [
+                        523.25, 659.25, 783.99, 659.25, 523.25, 659.25, 783.99, 880.00,
+                        698.46, 587.33, 440.00, 587.33, 698.46, 783.99, 659.25, 523.25
+                    ];
+                } else if (track === 'route1') {
+                    return [
+                        392.00, 440.00, 493.88, 523.25, 587.33, 523.25, 493.88, 440.00,
+                        392.00, 523.25, 659.25, 587.33, 523.25, 493.88, 523.25, 392.00
+                    ];
+                }
+                // Default: Pallet Town
+                return [
+                    261.63, 329.63, 392.00, 329.63, 349.23, 440.00, 523.25, 440.00,
+                    392.00, 329.63, 261.63, 293.66, 329.63, 349.23, 329.63, 261.63
+                ];
+            }
+
+            startChiptuneLoop() {
+                if (this.isPlaying) return;
+                this.initCtx();
+                this.isPlaying = true;
+                this.step = 0;
+
+                const tick = () => {
+                    if (!this.isPlaying) return;
+                    const notes = this.getNotesForTrack(this.currentTrack);
+                    const freq = notes[this.step % notes.length];
+                    
+                    // Main Lead Note
+                    this.playTone(freq, 0.18, 'square');
+                    
+                    // Bass pulse
+                    if (this.step % 2 === 0) {
+                        this.playTone(freq / 2, 0.1, 'triangle');
+                    }
+
+                    this.step++;
+                    this.timer = setTimeout(tick, 220); // Tempo
+                };
+
+                tick();
+            }
+
+            stopChiptuneLoop() {
+                this.isPlaying = false;
+                if (this.timer) clearTimeout(this.timer);
+            }
+        }
+
+        const chiptune = new RetroChiptuneAudio();
+
+        function toggleChiptuneMusic() {
+            const icon = document.getElementById('chipMusicIcon');
+            const text = document.getElementById('chipMusicText');
+
+            if (chiptune.isPlaying) {
+                chiptune.stopChiptuneLoop();
+                icon.innerText = '▶️';
+                text.innerText = '8-Bit BGM';
+            } else {
+                chiptune.startChiptuneLoop();
+                icon.innerText = '⏸️';
+                text.innerText = 'Playing...';
+            }
+            playSFX('click');
+        }
+
+        function changeChiptuneTrack(val) {
+            chiptune.currentTrack = val;
+            playSFX('click');
+        }
+
+        function setChiptuneVolume(val) {
+            chiptune.setVolume(val);
+        }
+
+        function playSFX(type) {
+            chiptune.playSFX(type);
+        }
+
+        // ALL ANIMATED PIXEL SPRITES DATA (EEVEELUTIONS + FRIENDS)
+        const ALL_POKEMON_LIST = [
+            // Eeveelutions
             { id: 'eevee', name: 'Eevee', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif', quote: 'Vee-vee! Aku lagi jalan-jalan di dapur! 🧁' },
             { id: 'vaporeon', name: 'Vaporeon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/134.gif', quote: 'Vapor-vapor! Bikin dessert dingin yuk! 🍧' },
             { id: 'jolteon', name: 'Jolteon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/135.gif', quote: 'Jolt-jolt! Baking kilat super cepat! ⚡' },
@@ -324,90 +794,121 @@
             { id: 'umbreon', name: 'Umbreon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/197.gif', quote: 'Umb-umb! Camilan cookies malam hari! 🍪' },
             { id: 'leafeon', name: 'Leafeon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/470.gif', quote: 'Leaf-leaf! Aroma matcha harum sekali! 🍵' },
             { id: 'glaceon', name: 'Glaceon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/471.gif', quote: 'Glace-glace! Es krim cake sudah jadi! 🍦' },
-            { id: 'sylveon', name: 'Sylveon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/700.gif', quote: 'Sylv-sylv! Hiasan kuelnya cantik banget! 🎀' }
+            { id: 'sylveon', name: 'Sylveon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/700.gif', quote: 'Sylv-sylv! Hiasan kuelnya cantik banget! 🎀' },
+            // Extra 8-Bit Playground & Mascot Friends
+            { id: 'pikachu', name: 'Pikachu', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif', quote: 'Pika-pika! Resep ini berenergi tinggi! ⚡' },
+            { id: 'charmander', name: 'Charmander', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif', quote: 'Char-char! Api kompor sudah siap! 🔥' },
+            { id: 'squirtle', name: 'Squirtle', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/7.gif', quote: 'Squirtle! Cuci piring dapur sampai bersih! 🌊' },
+            { id: 'bulbasaur', name: 'Bulbasaur', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif', quote: 'Saur-saur! Buah berry segar siap dipetik! 🍃' },
+            { id: 'jigglypuff', name: 'Jigglypuff', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/39.gif', quote: 'Jiggly-puff! Kue bolu ini lembut seperti lagu! 🎶' },
+            { id: 'snorlax', name: 'Snorlax', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/143.gif', quote: 'Zzz... Kue keringnya sudah matang belum? 🥐' },
+            { id: 'gengar', name: 'Gengar', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/94.gif', quote: 'Hehehe! Permen hantu yang manis & misterius! 👻' },
+            { id: 'togepi', name: 'Togepi', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/175.gif', quote: 'Chirri-Chirri! Kue renyah pembawa keberuntungan! 🥚' }
         ];
 
+        const POKEMON_CHEFS = ALL_POKEMON_LIST.filter(p => ['eevee','vaporeon','jolteon','flareon','espeon','umbreon','leafeon','glaceon','sylveon'].includes(p.id));
+        const PLAYGROUND_FRIENDS = ALL_POKEMON_LIST;
+
+        let activePlaygroundList = ['pikachu', 'jigglypuff', 'snorlax'];
         let recipes = JSON.parse(localStorage.getItem('pokemon_baking_recipes')) || [];
         let currentFilter = 'All';
         let selectedPokemonChef = 'eevee';
         let currentMascotIndex = 0;
         let currentRecipeImage = '';
-        let isMusicPlaying = false;
 
-        function playClickSound() {
-            const sound = document.getElementById('clickSound');
-            if (sound) { sound.currentTime = 0; sound.play().catch(() => {}); }
+        // Theme Switcher Logic
+        function toggleThemeMenu() {
+            playSFX('click');
+            const menu = document.getElementById('themeDropdown');
+            menu.classList.toggle('hidden');
         }
 
-        function toggleMusic() {
-            playClickSound();
-            const music = document.getElementById('bgMusic');
-            const icon = document.getElementById('musicIcon');
-            const text = document.getElementById('musicStatusText');
+        function setTheme(themeName) {
+            playSFX('fanfare');
+            document.documentElement.className = 'theme-' + themeName;
+            document.getElementById('themeDropdown').classList.add('hidden');
+        }
 
-            if (isMusicPlaying) {
-                music.pause();
-                isMusicPlaying = false;
-                icon.innerText = '🎵';
-                text.innerText = 'Musik: OFF';
-            } else {
-                music.play().then(() => {
-                    isMusicPlaying = true;
-                    icon.innerText = '🎶';
-                    text.innerText = 'Musik: ON';
-                }).catch(() => { alert('Klik di mana saja pada layar untuk izinkan musik!'); });
+        // Render Playground Mon Field
+        function renderPlayground() {
+            const field = document.getElementById('playgroundField');
+            const availContainer = document.getElementById('availablePlaygroundMonsters');
+
+            field.innerHTML = activePlaygroundList.map(id => {
+                const p = PLAYGROUND_FRIENDS.find(item => item.id === id) || POKEMON_CHEFS.find(item => item.id === id);
+                if (!p) return '';
+                return `
+                    <div id="pg-${p.id}" onclick="interactPlaygroundMon('${p.id}')" class="cursor-pointer bg-custom-card border border-custom p-2.5 rounded-2xl flex items-center gap-2 shadow-sm hover:scale-105 transition animate-float">
+                        <img src="${p.img}" class="w-10 h-10 object-contain pixelated">
+                        <div>
+                            <span class="text-xs font-bold text-custom-main block leading-none font-fun">${p.name}</span>
+                            <span class="text-[9px] text-custom-primary font-bold">Klik aku!</span>
+                        </div>
+                        <button onclick="event.stopPropagation(); removePlaygroundMon('${p.id}')" class="text-xs text-rose-400 hover:text-rose-600 font-bold ml-1">✕</button>
+                    </div>
+                `;
+            }).join('');
+
+            // Spawn Buttons
+            availContainer.innerHTML = PLAYGROUND_FRIENDS.map(p => {
+                const isActive = activePlaygroundList.includes(p.id);
+                return `
+                    <button onclick="addPlaygroundMon('${p.id}')" ${isActive ? 'disabled' : ''} class="px-2 py-1 rounded-xl text-[10px] font-bold border border-custom flex items-center gap-1 ${isActive ? 'opacity-40 bg-slate-200 cursor-not-allowed' : 'bg-custom-card hover:bg-custom-secondary text-custom-main shadow-sm'}">
+                        <img src="${p.img}" class="w-4 h-4 object-contain pixelated"> +${p.name}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function interactPlaygroundMon(id) {
+            playSFX('bounce');
+            const p = PLAYGROUND_FRIENDS.find(item => item.id === id) || POKEMON_CHEFS.find(item => item.id === id);
+            if (!p) return;
+
+            const card = document.getElementById(`pg-${id}`);
+            if (card) {
+                card.classList.add('mascot-bounce');
+                setTimeout(() => card.classList.remove('mascot-bounce'), 400);
+            }
+
+            document.getElementById('bubbleText').innerText = `${p.name}: "${p.quote}"`;
+        }
+
+        function addPlaygroundMon(id) {
+            playSFX('fanfare');
+            if (!activePlaygroundList.includes(id)) {
+                activePlaygroundList.push(id);
+                renderPlayground();
             }
         }
 
-        if (recipes.length === 0) {
-            recipes = [
-                {
-                    id: '1',
-                    title: 'Roti Gandum Eevee 🍞',
-                    category: 'Roti',
-                    time: 40,
-                    chef: 'eevee',
-                    foodImage: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
-                    ingredients: ['300g Tepung Gandum', '1 sdm Ragi Instan', '200ml Air Hangat'],
-                    steps: ['Campur tepung dan ragi.', 'Uleni adonan hingga kalis.', 'Panggang hingga krispi.']
-                },
-                {
-                    id: '2',
-                    title: 'Sylveon Strawberry Cake 🍰',
-                    category: 'Kue & Cake',
-                    time: 45,
-                    chef: 'sylveon',
-                    foodImage: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80',
-                    ingredients: ['200g Tepung Cake', '150g Buah Strawberry', '200ml Whipping Cream'],
-                    steps: ['Buat adonan cake spon.', 'Panggang dan belah dua.', 'Lapisi krim manis dan buah strawberry.']
-                }
-            ];
-            saveToStorage();
+        function removePlaygroundMon(id) {
+            playSFX('delete');
+            activePlaygroundList = activePlaygroundList.filter(item => item !== id);
+            renderPlayground();
         }
-
-        function saveToStorage() { localStorage.setItem('pokemon_baking_recipes', JSON.stringify(recipes)); }
 
         function renderMascotPicker() {
             const container = document.getElementById('mascotPicker');
-            container.innerHTML = POKEMON_CHEFS.map((p, idx) => `
-                <button onclick="changeLiveMascot(${idx})" class="w-10 h-10 rounded-2xl border border-custom flex items-center justify-center p-1 hover:scale-110 transition bg-custom-secondary shadow-sm shrink-0 ${currentMascotIndex === idx ? 'ring-2 ring-custom-primary' : ''}">
+            container.innerHTML = ALL_POKEMON_LIST.map((p, idx) => `
+                <button onclick="changeLiveMascot(${idx})" title="${p.name}" class="w-10 h-10 rounded-2xl border border-custom flex items-center justify-center p-1 hover:scale-110 transition bg-custom-secondary shadow-sm shrink-0 ${currentMascotIndex === idx ? 'ring-2 ring-custom-primary' : ''}">
                     <img src="${p.img}" class="w-full h-full object-contain pixelated">
                 </button>
             `).join('');
         }
 
         function changeLiveMascot(index) {
-            playClickSound();
+            playSFX('click');
             currentMascotIndex = index;
-            const mascot = POKEMON_CHEFS[index];
+            const mascot = ALL_POKEMON_LIST[index];
             document.getElementById('walkingSprite').src = mascot.img;
             document.getElementById('bubbleText').innerText = mascot.quote;
             renderMascotPicker();
         }
 
         function interactMascot() {
-            playClickSound();
-            const mascot = POKEMON_CHEFS[currentMascotIndex];
+            playSFX('bounce');
+            const mascot = ALL_POKEMON_LIST[currentMascotIndex];
             const mascotEl = document.getElementById('walkingMascot');
             
             mascotEl.classList.add('mascot-bounce');
@@ -431,7 +932,7 @@
             `).join('');
         }
 
-        function selectChef(id) { playClickSound(); selectedPokemonChef = id; renderPokemonSelector(); }
+        function selectChef(id) { playSFX('click'); selectedPokemonChef = id; renderPokemonSelector(); }
 
         function handleImageUpload(e) {
             const file = e.target.files[0];
@@ -464,6 +965,34 @@
             document.getElementById('imageUrlInput').value = '';
             document.getElementById('imagePreviewContainer').classList.add('hidden');
         }
+
+        if (recipes.length === 0) {
+            recipes = [
+                {
+                    id: '1',
+                    title: 'Roti Gandum Eevee 🍞',
+                    category: 'Roti',
+                    time: 40,
+                    chef: 'eevee',
+                    foodImage: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+                    ingredients: ['300g Tepung Gandum', '1 sdm Ragi Instan', '200ml Air Hangat'],
+                    steps: ['Campur tepung dan ragi.', 'Uleni adonan hingga kalis.', 'Panggang hingga krispi.']
+                },
+                {
+                    id: '2',
+                    title: 'Sylveon Strawberry Cake 🍰',
+                    category: 'Kue & Cake',
+                    time: 45,
+                    chef: 'sylveon',
+                    foodImage: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80',
+                    ingredients: ['200g Tepung Cake', '150g Buah Strawberry', '200ml Whipping Cream'],
+                    steps: ['Buat adonan cake spon.', 'Panggang dan belah dua.', 'Lapisi krim manis dan buah strawberry.']
+                }
+            ];
+            saveToStorage();
+        }
+
+        function saveToStorage() { localStorage.setItem('pokemon_baking_recipes', JSON.stringify(recipes)); }
 
         function renderRecipes() {
             const grid = document.getElementById('recipeGrid');
@@ -527,13 +1056,13 @@
         }
 
         function filterCategory(cat) {
-            playClickSound();
+            playSFX('click');
             currentFilter = cat;
             renderRecipes();
         }
 
         function openModal() {
-            playClickSound();
+            playSFX('click');
             document.getElementById('recipeId').value = '';
             document.getElementById('recipeForm').reset();
             selectedPokemonChef = 'eevee';
@@ -546,7 +1075,7 @@
 
         function saveRecipe(e) {
             e.preventDefault();
-            playClickSound();
+            playSFX('fanfare');
             const id = document.getElementById('recipeId').value || Date.now().toString();
             const title = document.getElementById('titleInput').value;
             const category = document.getElementById('categoryInput').value;
@@ -564,7 +1093,7 @@
         }
 
         function deleteRecipe(id) {
-            playClickSound();
+            playSFX('delete');
             if (confirm('Yakin mau hapus resep ini? 🥺')) {
                 recipes = recipes.filter(r => r.id !== id);
                 saveToStorage();
@@ -573,7 +1102,7 @@
         }
 
         function viewRecipe(id) {
-            playClickSound();
+            playSFX('click');
             const r = recipes.find(item => item.id === id);
             if (!r) return;
             const chef = POKEMON_CHEFS.find(p => p.id === r.chef) || POKEMON_CHEFS[0];
@@ -597,17 +1126,17 @@
         function closeViewModal() { document.getElementById('viewModal').classList.add('hidden'); }
 
         let timerInterval = null;
-        function openTimerWidget() { playClickSound(); document.getElementById('timerWidget').classList.remove('hidden'); }
+        function openTimerWidget() { playSFX('click'); document.getElementById('timerWidget').classList.remove('hidden'); }
         function closeTimerWidget() { resetTimer(); document.getElementById('timerWidget').classList.add('hidden'); }
 
         function addTimerMinutes(mins) {
-            playClickSound();
+            playSFX('click');
             let currentMin = parseInt(document.getElementById('timerMinInput').value) || 0;
             document.getElementById('timerMinInput').value = currentMin + mins;
         }
 
         function toggleTimer() {
-            playClickSound();
+            playSFX('click');
             const btn = document.getElementById('timerStartBtn');
             if (timerInterval) {
                 clearInterval(timerInterval);
@@ -629,7 +1158,8 @@
                         clearInterval(timerInterval);
                         timerInterval = null;
                         btn.innerText = 'Mulai Timer';
-                        alert('⏰ Waktu baking selesai!');
+                        playSFX('fanfare');
+                        alert('⏰ Waktu baking selesai! Kue matang sempurna!');
                     }
                 }, 1000);
                 btn.innerText = 'Jeda Timer';
@@ -644,7 +1174,9 @@
             document.getElementById('timerStartBtn').innerText = 'Mulai Timer';
         }
 
+        // Initialize UI
         renderMascotPicker();
+        renderPlayground();
         renderRecipes();
     </script>
 </body>
