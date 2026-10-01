@@ -3,64 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buku Resep Baking Pokémon Chef 🧑‍🍳🧁</title>
+    <title>Pokémon Café ReMix • Buku Resep Baking 🧁🧑‍🍳</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: #FFF5F7;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
         h1, h2, h3, .font-fun {
             font-family: 'Fredoka', cursive;
         }
-        .pokemon-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        /* TEMA WARNA DYNAMIC */
+        /* 1. Vanilla Cafe (Default) */
+        .theme-vanilla {
+            --bg-main: #FFF8EE;
+            --bg-card: #FFFFFF;
+            --primary: #D97706;
+            --primary-hover: #B45309;
+            --secondary-bg: #FEF3C7;
+            --text-primary: #78350F;
+            --border-color: #FDE68A;
+            --accent-tag: #F59E0B;
         }
-        .pokemon-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.3);
+        /* 2. Berry Pink */
+        .theme-pink {
+            --bg-main: #FFF1F2;
+            --bg-card: #FFFFFF;
+            --primary: #E11D48;
+            --primary-hover: #BE123C;
+            --secondary-bg: #FFE4E6;
+            --text-primary: #881337;
+            --border-color: #FECDD3;
+            --accent-tag: #FB7185;
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+        /* 3. Pikachu Yellow */
+        .theme-yellow {
+            --bg-main: #FEFCE8;
+            --bg-card: #FFFFFF;
+            --primary: #CA8A04;
+            --primary-hover: #A16207;
+            --secondary-bg: #FEF08A;
+            --text-primary: #713F12;
+            --border-color: #FDE047;
+            --accent-tag: #EAB308;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #FFE4E6;
-            border-radius: 10px;
+        /* 4. Matcha Green */
+        .theme-green {
+            --bg-main: #F0FDF4;
+            --bg-card: #FFFFFF;
+            --primary: #16A34A;
+            --primary-hover: #15803D;
+            --secondary-bg: #DCFCE7;
+            --text-primary: #14532D;
+            --border-color: #BBF7D0;
+            --accent-tag: #22C55E;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #FB7185;
-            border-radius: 10px;
+        /* 5. Lavender Purple */
+        .theme-purple {
+            --bg-main: #FAF5FF;
+            --bg-card: #FFFFFF;
+            --primary: #9333EA;
+            --primary-hover: #7E22CE;
+            --secondary-bg: #F3E8FF;
+            --text-primary: #581C87;
+            --border-color: #E9D5FF;
+            --accent-tag: #A855F7;
         }
+
+        body {
+            background-color: var(--bg-main);
+        }
+        .bg-custom-card { background-color: var(--bg-card); }
+        .bg-custom-primary { background-color: var(--primary); }
+        .bg-custom-primary:hover { background-color: var(--primary-hover); }
+        .bg-custom-secondary { background-color: var(--secondary-bg); }
+        .text-custom-main { color: var(--text-primary); }
+        .text-custom-primary { color: var(--primary); }
+        .border-custom { border-color: var(--border-color); }
+
+        .cafe-card {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .cafe-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
+        }
+
+        /* Animasi Pokemon Mascot Walk & Jump */
+        @keyframes pokemonFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        .animate-pokemon-float {
+            animation: pokemonFloat 3s infinite ease-in-out;
+        }
+
+        @keyframes bounceClick {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2) rotate(-5deg); }
+        }
+        .animate-bounce-click {
+            animation: bounceClick 0.4s ease;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: var(--secondary-bg); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
     </style>
 </head>
-<body class="text-slate-700 min-h-screen flex flex-col">
+<body class="theme-vanilla text-slate-700 min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <!-- Header Navbar -->
-    <header class="bg-gradient-to-r from-pink-400 via-rose-300 to-amber-200 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- Navbar Header Cafe Remix Style -->
+    <header class="bg-custom-card border-b-4 border-custom shadow-md sticky top-0 z-40 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
             <div class="flex items-center gap-3">
-                <div class="bg-white p-2 rounded-full shadow-inner flex items-center justify-center w-12 h-12">
-                    <span class="text-2xl">🧁</span>
+                <div class="bg-custom-secondary p-2 rounded-2xl border-2 border-custom shadow-sm flex items-center justify-center w-12 h-12">
+                    <span class="text-2xl">☕</span>
                 </div>
                 <div>
-                    <h1 class="text-xl md:text-2xl font-bold tracking-wide flex items-center gap-2">
-                        Dapur Baking Pokémon <span class="text-sm bg-yellow-300 text-amber-900 px-2 py-0.5 rounded-full font-sans font-bold">Chef Edition 🧑‍🍳</span>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide text-custom-main flex items-center gap-2 font-fun">
+                        Pokémon Café <span class="bg-custom-primary text-white text-xs px-2.5 py-0.5 rounded-full font-sans tracking-wider uppercase shadow-sm">ReMix</span>
                     </h1>
-                    <p class="text-xs text-pink-100 hidden sm:block">Simpan resep manismu bersama para Pokémon Chef!</p>
+                    <p class="text-xs text-custom-primary font-semibold hidden sm:block">Buku Resep Baking Pribadi • Spesial Chef Pokémon 🧑‍🍳</p>
                 </div>
             </div>
             
-            <div class="flex gap-2">
-                <button onclick="exportData()" title="Cadangkan File" class="bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-xl text-sm font-semibold backdrop-blur-sm transition flex items-center gap-1.5 border border-white/30">
+            <div class="flex items-center gap-2">
+                <!-- Theme Color Picker Dropdown -->
+                <div class="relative group">
+                    <button class="bg-custom-secondary hover:bg-opacity-80 text-custom-main px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-custom flex items-center gap-1.5 shadow-sm transition">
+                        <i class="fa-solid fa-palette text-sm"></i> <span class="hidden md:inline">Warna</span>
+                    </button>
+                    <div class="absolute right-0 top-full mt-1 bg-white border-2 border-slate-200 rounded-2xl p-2 shadow-xl hidden group-hover:flex flex-col gap-1.5 z-50 w-36">
+                        <button onclick="setTheme('vanilla')" class="flex items-center gap-2 text-xs font-bold p-1.5 rounded-lg hover:bg-amber-50 text-amber-800">
+                            <span class="w-4 h-4 rounded-full bg-amber-400 border"></span> Vanilla Cafe
+                        </button>
+                        <button onclick="setTheme('pink')" class="flex items-center gap-2 text-xs font-bold p-1.5 rounded-lg hover:bg-rose-50 text-rose-700">
+                            <span class="w-4 h-4 rounded-full bg-rose-400 border"></span> Berry Pink
+                        </button>
+                        <button onclick="setTheme('yellow')" class="flex items-center gap-2 text-xs font-bold p-1.5 rounded-lg hover:bg-yellow-50 text-yellow-800">
+                            <span class="w-4 h-4 rounded-full bg-yellow-400 border"></span> Pikachu Yellow
+                        </button>
+                        <button onclick="setTheme('green')" class="flex items-center gap-2 text-xs font-bold p-1.5 rounded-lg hover:bg-green-50 text-green-800">
+                            <span class="w-4 h-4 rounded-full bg-green-500 border"></span> Matcha Green
+                        </button>
+                        <button onclick="setTheme('purple')" class="flex items-center gap-2 text-xs font-bold p-1.5 rounded-lg hover:bg-purple-50 text-purple-800">
+                            <span class="w-4 h-4 rounded-full bg-purple-400 border"></span> Lavender
+                        </button>
+                    </div>
+                </div>
+
+                <button onclick="exportData()" title="Backup Data" class="bg-custom-secondary hover:bg-opacity-80 text-custom-main px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-custom flex items-center gap-1.5 shadow-sm transition">
                     <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Backup</span>
                 </button>
-                <label title="Pulihkan File" class="bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-xl text-sm font-semibold backdrop-blur-sm transition flex items-center gap-1.5 border border-white/30 cursor-pointer">
+                <label title="Restore Data" class="bg-custom-secondary hover:bg-opacity-80 text-custom-main px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-custom flex items-center gap-1.5 shadow-sm transition cursor-pointer">
                     <i class="fa-solid fa-upload"></i> <span class="hidden sm:inline">Restore</span>
                     <input type="file" id="importFile" onchange="importData(event)" class="hidden" accept=".json">
                 </label>
-                <button onclick="openModal()" class="bg-yellow-400 hover:bg-yellow-300 text-amber-900 font-bold px-4 py-1.5 rounded-xl shadow-md text-sm transition flex items-center gap-1.5">
+                <button onclick="openModal()" class="bg-custom-primary hover:opacity-90 text-white font-bold px-4 py-1.5 rounded-xl shadow-md text-xs transition flex items-center gap-1.5">
                     <i class="fa-solid fa-plus"></i> Resep Baru
                 </button>
             </div>
@@ -68,61 +171,89 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full">
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full z-10">
+
+        <!-- Banner Cafe Remix Style -->
+        <div class="bg-custom-secondary rounded-3xl p-4 md:p-6 mb-6 border-2 border-custom shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="space-y-1 text-center md:text-left">
+                <span class="bg-custom-primary text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-sm">Selamat Datang di Dapur Baking! 🧑‍🍳</span>
+                <h2 class="text-xl md:text-2xl font-bold text-custom-main font-fun mt-1">Daftar Resep Kue Café ReMix</h2>
+                <p class="text-xs text-custom-primary">Simpan semua ide baking-mu dengan aman bersama para Pokémon Chef kesayangan!</p>
+            </div>
+            <div class="flex items-center gap-2 bg-custom-card p-2 rounded-2xl border border-custom shadow-inner">
+                <span class="text-xs font-bold text-custom-main pl-2">Ganti Maskot:</span>
+                <div class="flex gap-1" id="mascotPicker">
+                    <!-- Dynamic Mascot Selectors -->
+                </div>
+            </div>
+        </div>
 
         <!-- Search & Filter Bar -->
-        <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
+        <div class="bg-custom-card p-4 rounded-2xl shadow-sm border-2 border-custom mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
             <div class="relative w-full md:w-96">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-rose-300"></i>
-                <input type="text" id="searchInput" oninput="renderRecipes()" placeholder="Cari resep manis..." class="w-full pl-10 pr-4 py-2 bg-pink-50/50 border border-pink-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 text-sm">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400"></i>
+                <input type="text" id="searchInput" oninput="renderRecipes()" placeholder="Cari resep manis atau bahan..." class="w-full pl-10 pr-4 py-2 bg-custom-secondary border border-custom rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm">
             </div>
             
             <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
-                <button onclick="filterCategory('All')" class="category-btn active px-4 py-1.5 rounded-xl text-sm font-bold bg-rose-500 text-white shadow-sm whitespace-nowrap">Semua</button>
-                <button onclick="filterCategory('Kue & Cake')" class="category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-pink-100 text-rose-600 hover:bg-rose-200 whitespace-nowrap">🍰 Kue & Cake</button>
-                <button onclick="filterCategory('Roti')" class="category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-amber-100 text-amber-700 hover:bg-amber-200 whitespace-nowrap">🍞 Roti</button>
-                <button onclick="filterCategory('Biskuit & Cookies')" class="category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-orange-100 text-orange-700 hover:bg-orange-200 whitespace-nowrap">🍪 Cookies</button>
-                <button onclick="filterCategory('Dessert & Pastry')" class="category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-purple-100 text-purple-700 hover:bg-purple-200 whitespace-nowrap">🧁 Dessert</button>
+                <button onclick="filterCategory('All')" class="category-btn active px-4 py-1.5 rounded-xl text-xs font-bold bg-custom-primary text-white shadow-sm whitespace-nowrap">Semua</button>
+                <button onclick="filterCategory('Kue & Cake')" class="category-btn px-4 py-1.5 rounded-xl text-xs font-bold bg-custom-secondary text-custom-main hover:bg-opacity-80 whitespace-nowrap">🍰 Kue & Cake</button>
+                <button onclick="filterCategory('Roti')" class="category-btn px-4 py-1.5 rounded-xl text-xs font-bold bg-custom-secondary text-custom-main hover:bg-opacity-80 whitespace-nowrap">🍞 Roti</button>
+                <button onclick="filterCategory('Biskuit & Cookies')" class="category-btn px-4 py-1.5 rounded-xl text-xs font-bold bg-custom-secondary text-custom-main hover:bg-opacity-80 whitespace-nowrap">🍪 Cookies</button>
+                <button onclick="filterCategory('Dessert & Pastry')" class="category-btn px-4 py-1.5 rounded-xl text-xs font-bold bg-custom-secondary text-custom-main hover:bg-opacity-80 whitespace-nowrap">🧁 Dessert</button>
             </div>
         </div>
 
         <!-- Recipe Grid -->
         <div id="recipeGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Dynamic Recipe Cards -->
+            <!-- Dynamic Cards -->
         </div>
 
         <!-- Empty State -->
-        <div id="emptyState" class="hidden text-center py-12">
+        <div id="emptyState" class="hidden text-center py-12 bg-custom-card rounded-3xl border-2 border-dashed border-custom p-8 my-6">
             <div class="text-6xl mb-3">🧑‍🍳✨</div>
-            <h3 class="text-xl font-bold text-slate-600 font-fun">Belum Ada Resep Baking Nih!</h3>
-            <p class="text-slate-400 text-sm mt-1">Yuk tambahkan resep favoritmu dan pilih Chef Pokémon pendampingmu!</p>
-            <button onclick="openModal()" class="mt-4 bg-rose-500 hover:bg-rose-600 text-white font-bold px-5 py-2 rounded-xl text-sm shadow-md transition">
+            <h3 class="text-xl font-bold text-custom-main font-fun">Belum Ada Resep Baking Nih!</h3>
+            <p class="text-slate-400 text-xs mt-1">Yuk tambahkan resep favoritmu dan pilih Chef Pokémon pendampingmu!</p>
+            <button onclick="openModal()" class="mt-4 bg-custom-primary text-white font-bold px-5 py-2 rounded-xl text-xs shadow-md transition">
                 + Buat Resep Pertama
             </button>
         </div>
 
     </main>
 
+    <!-- POKEMON MASCOT GERAK FLOATING (BOTTOM RIGHT) -->
+    <div id="liveMascotContainer" class="fixed bottom-3 right-4 z-50 flex flex-col items-end pointer-events-auto">
+        <!-- Chat Bubble -->
+        <div id="mascotBubble" class="bg-custom-card border-2 border-custom shadow-xl p-2.5 rounded-2xl text-xs font-bold text-custom-main mb-2 max-w-[180px] text-center animate-pokemon-float relative">
+            <span>Pika-pika! Ayo baking kue hari ini! 🧁✨</span>
+            <div class="w-3 h-3 bg-custom-card border-r-2 border-b-2 border-custom rotate-45 absolute -bottom-1.5 right-6"></div>
+        </div>
+        <!-- Animated Pokemon GIF -->
+        <div onclick="interactMascot()" class="cursor-pointer group relative">
+            <img id="mascotGif" src="https://projectpokemon.org/images/normal-sprites/pikachu.gif" alt="Pokemon Mascot" class="w-20 h-20 md:w-24 md:w-24 object-contain filter drop-shadow-lg transition hover:scale-110">
+        </div>
+    </div>
+
     <!-- Baking Timer Widget Floating -->
-    <div id="timerWidget" class="fixed bottom-4 right-4 bg-white/95 backdrop-blur border-2 border-rose-300 rounded-2xl shadow-xl p-3 z-40 hidden flex items-center gap-3">
-        <div class="bg-rose-100 text-rose-600 p-2.5 rounded-xl font-bold text-xl min-w-[70px] text-center" id="timerDisplay">
+    <div id="timerWidget" class="fixed bottom-4 left-4 bg-custom-card border-2 border-custom rounded-2xl shadow-2xl p-3 z-40 hidden flex items-center gap-3">
+        <div class="bg-custom-secondary text-custom-main p-2.5 rounded-xl font-bold text-xl min-w-[70px] text-center font-fun" id="timerDisplay">
             00:00
         </div>
         <div>
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-wide">Baking Timer ⏲️</div>
+            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Baking Timer ⏲️</div>
             <div class="flex gap-1 mt-1">
-                <button onclick="toggleTimer()" id="timerStartBtn" class="bg-rose-500 hover:bg-rose-600 text-white px-2.5 py-0.5 rounded-lg text-xs font-bold">Start</button>
-                <button onclick="resetTimer()" class="bg-slate-200 hover:bg-slate-300 text-slate-600 px-2.5 py-0.5 rounded-lg text-xs font-bold">Reset</button>
+                <button onclick="toggleTimer()" id="timerStartBtn" class="bg-custom-primary text-white px-2.5 py-0.5 rounded-lg text-xs font-bold">Start</button>
+                <button onclick="resetTimer()" class="bg-slate-200 text-slate-600 px-2.5 py-0.5 rounded-lg text-xs font-bold">Reset</button>
             </div>
         </div>
         <button onclick="closeTimerWidget()" class="text-slate-400 hover:text-slate-600 text-xs px-1">✕</button>
     </div>
 
     <!-- Modal Form Resep -->
-    <div id="recipeModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl border-4 border-pink-200 max-h-[90vh] overflow-y-auto custom-scrollbar">
+    <div id="recipeModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-custom-card rounded-3xl max-w-xl w-full p-6 shadow-2xl border-4 border-custom max-h-[90vh] overflow-y-auto custom-scrollbar">
             <div class="flex justify-between items-center mb-4">
-                <h2 id="modalTitle" class="text-2xl font-bold text-rose-600 font-fun flex items-center gap-2">
+                <h2 id="modalTitle" class="text-2xl font-bold text-custom-main font-fun flex items-center gap-2">
                     <span>🧑‍🍳</span> Tambah Resep Baking Baru
                 </h2>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-rose-500 text-xl font-bold">✕</button>
@@ -132,14 +263,14 @@
                 <input type="hidden" id="recipeId">
                 
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Olahan Baking *</label>
-                    <input type="text" id="titleInput" required placeholder="Contoh: Pikachu Strawberry Shortcake" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm">
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Nama Olahan Baking *</label>
+                    <input type="text" id="titleInput" required placeholder="Contoh: Pikachu Strawberry Shortcake" class="w-full px-3 py-2 bg-custom-secondary border border-custom rounded-xl focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Kategori</label>
-                        <select id="categoryInput" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm">
+                        <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Kategori</label>
+                        <select id="categoryInput" class="w-full px-3 py-2 bg-custom-secondary border border-custom rounded-xl focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm">
                             <option value="Kue & Cake">🍰 Kue & Cake</option>
                             <option value="Roti">🍞 Roti</option>
                             <option value="Biskuit & Cookies">🍪 Cookies</option>
@@ -147,41 +278,41 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Waktu Baking (Menit)</label>
-                        <input type="number" id="timeInput" min="1" placeholder="45" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm">
+                        <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Waktu Baking (Menit)</label>
+                        <input type="number" id="timeInput" min="1" placeholder="45" class="w-full px-3 py-2 bg-custom-secondary border border-custom rounded-xl focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm">
                     </div>
                 </div>
 
                 <!-- Pilih Pokemon Chef Mascot -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pilih Head Chef Pokémon 🧑‍🍳</label>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Pilih Head Chef Pokémon 🧑‍🍳</label>
                     <div class="grid grid-cols-5 gap-2" id="pokemonSelector">
                         <!-- Rendered dynamically -->
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Bahan - Bahan (Satu per baris) *</label>
-                    <textarea id="ingredientsInput" required rows="4" placeholder="200g Tepung Terigu&#10;100g Mentega&#10;2 Butir Telur&#10;50g Gula Halus" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm"></textarea>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Bahan - Bahan (Satu per baris) *</label>
+                    <textarea id="ingredientsInput" required rows="4" placeholder="200g Tepung Terigu&#10;100g Mentega&#10;2 Butir Telur&#10;50g Gula Halus" class="w-full px-3 py-2 bg-custom-secondary border border-custom rounded-xl focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Langkah Pembuatan (Satu per baris) *</label>
-                    <textarea id="stepsInput" required rows="4" placeholder="1. Kocok mentega dan gula hingga lembut&#10;2. Masukkan telur satu per satu&#10;3. Panggang di oven suhu 180°C selama 30 menit" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm"></textarea>
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Langkah Pembuatan (Satu per baris) *</label>
+                    <textarea id="stepsInput" required rows="4" placeholder="1. Kocok mentega dan gula hingga lembut&#10;2. Masukkan telur satu per satu&#10;3. Panggang di oven suhu 180°C selama 30 menit" class="w-full px-3 py-2 bg-custom-secondary border border-custom rounded-xl focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm"></textarea>
                 </div>
 
                 <div class="flex justify-end gap-2 pt-2">
-                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl text-slate-500 hover:bg-slate-100 text-sm font-semibold">Batal</button>
-                    <button type="submit" class="px-5 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-sm font-bold shadow-md">Simpan Resep</button>
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl text-slate-500 hover:bg-slate-100 text-xs font-semibold">Batal</button>
+                    <button type="submit" class="px-5 py-2 bg-custom-primary text-white rounded-xl text-xs font-bold shadow-md">Simpan Resep</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Modal View Resep Detail -->
-    <div id="viewModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border-4 border-pink-200 max-h-[90vh] overflow-y-auto custom-scrollbar relative">
-            <button onclick="closeViewModal()" class="absolute right-5 top-5 bg-pink-100 text-rose-500 hover:bg-rose-500 hover:text-white rounded-full w-8 h-8 flex items-center justify-center font-bold transition">✕</button>
+    <div id="viewModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-custom-card rounded-3xl max-w-2xl w-full p-6 shadow-2xl border-4 border-custom max-h-[90vh] overflow-y-auto custom-scrollbar relative">
+            <button onclick="closeViewModal()" class="absolute right-5 top-5 bg-custom-secondary text-custom-main rounded-full w-8 h-8 flex items-center justify-center font-bold transition">✕</button>
             
             <div id="viewContent">
                 <!-- Content inserted dynamically -->
@@ -190,44 +321,48 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-rose-100/60 border-t border-rose-200 py-4 mt-8 text-center text-xs text-rose-400 font-semibold">
-        Buku Resep Baking Pokémon • Tersimpan Otomatis di Browser 💖
+    <footer class="bg-custom-card border-t-2 border-custom py-4 mt-8 text-center text-xs text-custom-primary font-bold">
+        Pokémon Café ReMix • Buku Resep Baking Pribadi ☕✨
     </footer>
 
     <script>
-        // List Pokemon Chef dengan Aksesoris Topi Chef SVG / Badge
+        // List Head Chef Pokémon
         const POKEMON_CHEFS = [
-            { id: 'pikachu', name: 'Chef Pikachu', icon: '⚡', color: 'bg-yellow-100 border-yellow-300 text-yellow-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png' },
-            { id: 'jigglypuff', name: 'Chef Jigglypuff', icon: '🎤', color: 'bg-pink-100 border-pink-300 text-pink-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png' },
-            { id: 'eevee', name: 'Chef Eevee', icon: '🤎', color: 'bg-amber-100 border-amber-300 text-amber-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png' },
-            { id: 'snorlax', name: 'Chef Snorlax', icon: '🥐', color: 'bg-teal-100 border-teal-300 text-teal-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png' },
-            { id: 'charmander', name: 'Chef Charmander', icon: '🔥', color: 'bg-orange-100 border-orange-300 text-orange-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png' }
+            { id: 'pikachu', name: 'Chef Pikachu', gif: 'https://projectpokemon.org/images/normal-sprites/pikachu.gif', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png', quote: 'Pika-pika! Aromanya wangi banget!' },
+            { id: 'eevee', name: 'Chef Eevee', gif: 'https://projectpokemon.org/images/normal-sprites/eevee.gif', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png', quote: 'Vee-vee! Kue buatanmu paling lezat!' },
+            { id: 'piplup', name: 'Chef Piplup', gif: 'https://projectpokemon.org/images/normal-sprites/piplup.gif', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/393.png', quote: 'Pip-pip! Es krim & dessert siap!' },
+            { id: 'snorlax', name: 'Chef Snorlax', gif: 'https://projectpokemon.org/images/normal-sprites/snorlax.gif', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png', quote: 'Snooor... Mau tambah porsi kue lagi!' },
+            { id: 'rowlet', name: 'Chef Rowlet', gif: 'https://projectpokemon.org/images/normal-sprites/rowlet.gif', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/722.png', quote: 'Coo-coo! Timernya sudah berbunyi!' }
         ];
 
         let recipes = JSON.parse(localStorage.getItem('pokemon_baking_recipes')) || [];
         let currentFilter = 'All';
         let selectedPokemonChef = 'pikachu';
+        let currentMascotIndex = 0;
 
-        // Sample Data jika kosong
+        // Load Default Theme & Mascot
+        const savedTheme = localStorage.getItem('cafe_theme') || 'vanilla';
+        document.body.className = `theme-${savedTheme} text-slate-700 min-h-screen flex flex-col relative overflow-x-hidden`;
+
         if (recipes.length === 0) {
             recipes = [
                 {
                     id: '1',
-                    title: 'Pikachu Soft Fluffy Pancakes 🥞',
+                    title: 'Pikachu Fluffy Souffle Pancake 🥞',
                     category: 'Kue & Cake',
                     time: 25,
                     chef: 'pikachu',
-                    ingredients: ['150g Tepung Terigu', '1 sdm Gula Pasir', '1 sdt Baking Powder', '1 Butir Telur', '150ml Susu Cair', 'Mentega secukupnya'],
-                    steps: ['Campurkan tepung terigu, gula, dan baking powder dalam wadah.', 'Kocok telur dan susu cair, lalu tuang ke adonan kering.', 'Aduk perlahan hingga rata (jangan terlalu lama).', 'Panaskan teflon, olesi mentega tipis.', 'Tuang 1 sendok sayur adonan, masak hingga bersarang lalu balik.', 'Sajikan hangat dengan madu & sirup!']
+                    ingredients: ['2 Butir Telur (pisahkan)', '30ml Susu Cair', '35g Tepung Terigu', '25g Gula Pasir', '1/2 sdt Vanilla'],
+                    steps: ['Kocok kuning telur, susu, vanilla, dan tepung hingga rata.', 'Kocok putih telur dan gula hingga kaku (meringue).', 'Campur meringue ke adonan secara bertahap.', 'Panggang di teflon dengan api kecil dan sedikit air.', 'Sajikan hangat dengan butter & madu!']
                 },
                 {
                     id: '2',
-                    title: 'Jigglypuff Strawberry Chiffon Cake 🍰',
-                    category: 'Kue & Cake',
-                    time: 60,
-                    chef: 'jigglypuff',
-                    ingredients: ['4 Butir Telur (pisahkan kuning & putih)', '80g Gula Halus', '100g Tepung Terigu', '50ml Minyak Goreng', '60ml Susu Rasa Stroberi', 'Pewarna Merah Muda'],
-                    steps: ['Kocok kuning telur, minyak, susu stroberi, dan tepung hingga rata.', 'Di wadah terpisah, kocok putih telur dan gula hingga kaku (meringue).', 'Campurkan meringue ke adonan kuning secara bertahap dengan teknik aduk balik.', 'Panggang di oven suhu 160°C selama 45 menit.', 'Hias dengan whipped cream dan stroberi segar!']
+                    title: 'Eevee Caramel Nut Cookies 🍪',
+                    category: 'Biskuit & Cookies',
+                    time: 35,
+                    chef: 'eevee',
+                    ingredients: ['150g Mentega', '80g Gula Cokelat', '200g Tepung Terigu', '50g Kacang Almond Cincang', 'Saus Karamel'],
+                    steps: ['Kocok mentega dan gula cokelat hingga lembut.', 'Masukkan tepung dan kacang cincang, aduk hingga rata.', 'Bentuk bulatan kecil dan pipihkan di atas loyang.', 'Panggang di oven suhu 170°C selama 20 menit.', 'Hias dengan siraman saus karamel manis!']
                 }
             ];
             saveToStorage();
@@ -237,15 +372,52 @@
             localStorage.setItem('pokemon_baking_recipes', JSON.stringify(recipes));
         }
 
+        function setTheme(theme) {
+            document.body.className = `theme-${theme} text-slate-700 min-h-screen flex flex-col relative overflow-x-hidden`;
+            localStorage.setItem('cafe_theme', theme);
+        }
+
+        function renderMascotPicker() {
+            const container = document.getElementById('mascotPicker');
+            container.innerHTML = POKEMON_CHEFS.map((p, idx) => `
+                <button onclick="changeLiveMascot(${idx})" class="w-8 h-8 rounded-full border-2 border-custom flex items-center justify-center p-0.5 hover:scale-110 transition bg-white shadow-sm">
+                    <img src="${p.gif}" alt="${p.name}" class="w-6 h-6 object-contain">
+                </button>
+            `).join('');
+        }
+
+        function changeLiveMascot(index) {
+            currentMascotIndex = index;
+            const mascot = POKEMON_CHEFS[index];
+            document.getElementById('mascotGif').src = mascot.gif;
+            document.getElementById('mascotBubble').querySelector('span').innerText = mascot.quote;
+        }
+
+        function interactMascot() {
+            const mascot = POKEMON_CHEFS[currentMascotIndex];
+            const gif = document.getElementById('mascotGif');
+            gif.classList.add('animate-bounce-click');
+            setTimeout(() => gif.classList.remove('animate-bounce-click'), 400);
+
+            // Cycle quote
+            const extraQuotes = [
+                `Lagi baking ${mascot.name} ya?`,
+                'Jangan lupa cek timer oven-mu!',
+                'Kue buatanmu baunya harum sekali!',
+                'Pilih warna cafe favoritmu di atas!'
+            ];
+            const randomQuote = extraQuotes[Math.floor(Math.random() * extraQuotes.length)];
+            document.getElementById('mascotBubble').querySelector('span').innerText = randomQuote;
+        }
+
         function renderPokemonSelector() {
             const container = document.getElementById('pokemonSelector');
             container.innerHTML = POKEMON_CHEFS.map(p => `
-                <div onclick="selectChef('${p.id}')" class="pokemon-choice cursor-pointer border-2 p-1.5 rounded-2xl flex flex-col items-center justify-center text-center transition ${selectedPokemonChef === p.id ? 'border-rose-500 bg-rose-50 scale-105 shadow-sm' : 'border-slate-200 hover:border-pink-300'}">
-                    <div class="relative w-12 h-12">
-                        <img src="${p.img}" alt="${p.name}" class="w-12 h-12 object-contain">
-                        <span class="absolute -top-1 -right-1 text-xs">🧑‍‍🍳</span>
+                <div onclick="selectChef('${p.id}')" class="pokemon-choice cursor-pointer border-2 p-1.5 rounded-2xl flex flex-col items-center justify-center text-center transition ${selectedPokemonChef === p.id ? 'border-amber-500 bg-amber-50 scale-105 shadow-sm' : 'border-slate-200 hover:border-amber-300'}">
+                    <div class="relative w-10 h-10">
+                        <img src="${p.gif}" alt="${p.name}" class="w-10 h-10 object-contain">
                     </div>
-                    <span class="text-[10px] font-bold mt-1 text-slate-600 line-clamp-1">${p.name}</span>
+                    <span class="text-[9px] font-bold mt-1 text-slate-600 line-clamp-1">${p.name}</span>
                 </div>
             `).join('');
         }
@@ -276,44 +448,42 @@
             grid.innerHTML = filtered.map(r => {
                 const chef = POKEMON_CHEFS.find(p => p.id === r.chef) || POKEMON_CHEFS[0];
                 return `
-                    <div class="bg-white rounded-3xl p-5 border-2 border-pink-100 shadow-sm hover:shadow-md pokemon-card relative flex flex-col justify-between">
+                    <div class="bg-custom-card rounded-3xl p-5 border-2 border-custom shadow-sm cafe-card relative flex flex-col justify-between">
                         <div>
-                            <!-- Header Card with Chef Badge -->
                             <div class="flex justify-between items-start gap-2 mb-3">
-                                <span class="text-xs font-bold px-3 py-1 rounded-full ${chef.color} border flex items-center gap-1 shadow-sm">
+                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-custom-secondary text-custom-main border border-custom flex items-center gap-1 shadow-sm">
                                     <span>🧑‍🍳</span> ${chef.name}
                                 </span>
-                                <span class="text-xs font-semibold bg-rose-50 text-rose-500 px-2.5 py-1 rounded-lg border border-rose-100">
+                                <span class="text-xs font-semibold bg-custom-secondary text-custom-primary px-2.5 py-1 rounded-lg border border-custom">
                                     ⏱️ ${r.time || 30} m
                                 </span>
                             </div>
 
-                            <!-- Pokemon Mascot Illustration -->
-                            <div class="my-2 flex justify-center relative py-2 bg-gradient-to-b from-pink-50/50 to-amber-50/30 rounded-2xl border border-pink-100/50">
+                            <div class="my-2 flex justify-center relative py-3 bg-custom-secondary rounded-2xl border border-custom">
                                 <img src="${chef.img}" alt="${chef.name}" class="w-24 h-24 object-contain filter drop-shadow-md">
-                                <div class="absolute bottom-1 right-3 text-lg">🧁</div>
+                                <img src="${chef.gif}" class="w-8 h-8 object-contain absolute bottom-1 right-2">
                             </div>
 
-                            <h3 class="font-bold text-lg text-slate-800 font-fun line-clamp-2 mt-2">${r.title}</h3>
-                            <p class="text-xs text-rose-400 font-semibold mb-3">${r.category}</p>
+                            <h3 class="font-bold text-lg text-custom-main font-fun line-clamp-2 mt-2">${r.title}</h3>
+                            <p class="text-xs text-custom-primary font-semibold mb-3">${r.category}</p>
 
                             <div class="text-xs text-slate-500 space-y-1 mb-4">
                                 <p class="font-bold text-slate-600">Bahan Utama:</p>
-                                <p class="line-clamp-2 italic">${r.ingredients.join(', ')}</p>
+                                <p class="line-clamp-2 italic text-slate-500">${r.ingredients.join(', ')}</p>
                             </div>
                         </div>
 
                         <div class="flex gap-2 pt-3 border-t border-slate-100">
-                            <button onclick="viewRecipe('${r.id}')" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm flex items-center justify-center gap-1">
+                            <button onclick="viewRecipe('${r.id}')" class="flex-1 bg-custom-primary text-white font-bold py-2 rounded-xl text-xs transition shadow-sm flex items-center justify-center gap-1">
                                 <i class="fa-solid fa-book-open"></i> Lihat Resep
                             </button>
-                            <button onclick="startBakingTimer(${r.time || 30})" class="bg-amber-100 hover:bg-amber-200 text-amber-800 p-2 rounded-xl text-xs font-bold transition" title="Mulai Timer Baking">
+                            <button onclick="startBakingTimer(${r.time || 30})" class="bg-custom-secondary text-custom-main p-2 rounded-xl text-xs font-bold border border-custom transition" title="Mulai Timer Baking">
                                 ⏲️
                             </button>
-                            <button onclick="editRecipe('${r.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-600 p-2 rounded-xl text-xs transition">
+                            <button onclick="editRecipe('${r.id}')" class="bg-slate-100 text-slate-600 p-2 rounded-xl text-xs transition hover:bg-slate-200">
                                 <i class="fa-solid fa-pen"></i>
                             </button>
-                            <button onclick="deleteRecipe('${r.id}')" class="bg-red-50 hover:bg-red-100 text-red-500 p-2 rounded-xl text-xs transition">
+                            <button onclick="deleteRecipe('${r.id}')" class="bg-red-50 text-red-500 p-2 rounded-xl text-xs transition hover:bg-red-100">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
@@ -324,13 +494,6 @@
 
         function filterCategory(cat) {
             currentFilter = cat;
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                if (btn.innerText.includes(cat) || (cat === 'All' && btn.innerText === 'Semua')) {
-                    btn.className = "category-btn active px-4 py-1.5 rounded-xl text-sm font-bold bg-rose-500 text-white shadow-sm whitespace-nowrap";
-                } else {
-                    btn.className = "category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-pink-50 text-rose-600 hover:bg-rose-100 whitespace-nowrap";
-                }
-            });
             renderRecipes();
         }
 
@@ -403,31 +566,31 @@
             const content = document.getElementById('viewContent');
             content.innerHTML = `
                 <div class="flex items-center gap-3 mb-4">
-                    <img src="${chef.img}" class="w-16 h-16 object-contain bg-pink-50 rounded-2xl p-1 border border-pink-200">
+                    <img src="${chef.gif}" class="w-14 h-14 object-contain bg-custom-secondary rounded-2xl p-1 border border-custom">
                     <div>
-                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${chef.color}">🧑‍🍳 Head Chef ${chef.name}</span>
-                        <h2 class="text-2xl font-bold text-slate-800 font-fun mt-1">${r.title}</h2>
-                        <span class="text-xs text-rose-400 font-semibold">📁 ${r.category} • ⏱️ ${r.time} Menit</span>
+                        <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-custom-secondary text-custom-main border border-custom">🧑‍🍳 Head Chef ${chef.name}</span>
+                        <h2 class="text-2xl font-bold text-custom-main font-fun mt-1">${r.title}</h2>
+                        <span class="text-xs text-custom-primary font-semibold">📁 ${r.category} • ⏱️ ${r.time} Menit</span>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div class="bg-pink-50/60 p-4 rounded-2xl border border-pink-100">
-                        <h3 class="font-bold text-slate-700 font-fun mb-2 text-sm flex items-center gap-1.5">
+                    <div class="bg-custom-secondary p-4 rounded-2xl border border-custom">
+                        <h3 class="font-bold text-custom-main font-fun mb-2 text-xs flex items-center gap-1.5">
                             <span>🛒</span> Bahan - Bahan:
                         </h3>
                         <ul class="space-y-1.5 text-xs text-slate-600">
                             ${r.ingredients.map(ing => `
                                 <li class="flex items-center gap-2">
-                                    <input type="checkbox" class="rounded text-rose-500 focus:ring-rose-400">
+                                    <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
                                     <span>${ing}</span>
                                 </li>
                             `).join('')}
                         </ul>
                     </div>
 
-                    <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-100">
-                        <h3 class="font-bold text-slate-700 font-fun mb-2 text-sm flex items-center gap-1.5">
+                    <div class="bg-custom-secondary p-4 rounded-2xl border border-custom">
+                        <h3 class="font-bold text-custom-main font-fun mb-2 text-xs flex items-center gap-1.5">
                             <span>👩‍🍳</span> Langkah Pembuatan:
                         </h3>
                         <ol class="space-y-2 text-xs text-slate-600 list-decimal pl-4">
@@ -437,11 +600,11 @@
                 </div>
 
                 <div class="mt-6 flex justify-between items-center pt-4 border-t border-slate-100">
-                    <button onclick="startBakingTimer(${r.time})" class="bg-amber-400 hover:bg-amber-300 text-amber-900 font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 shadow-sm">
+                    <button onclick="startBakingTimer(${r.time})" class="bg-custom-primary text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 shadow-sm">
                         ⏲️ Mulai Timer Baking (${r.time} Menit)
                     </button>
-                    <button onclick="closeViewModal()" class="bg-rose-500 text-white font-bold px-5 py-2 rounded-xl text-xs">
-                        Selesai
+                    <button onclick="closeViewModal()" class="bg-slate-200 text-slate-700 font-bold px-5 py-2 rounded-xl text-xs">
+                        Tutup
                     </button>
                 </div>
             `;
@@ -484,7 +647,7 @@
             fileReader.readAsText(e.target.files[0]);
         }
 
-        // Baking Timer Logic
+        // Baking Timer
         let timerInterval = null;
         let timerSeconds = 0;
 
@@ -501,7 +664,6 @@
                 clearInterval(timerInterval);
                 timerInterval = null;
                 btn.innerText = 'Start';
-                btn.className = 'bg-rose-500 hover:bg-rose-600 text-white px-2.5 py-0.5 rounded-lg text-xs font-bold';
             } else {
                 if (forceStart && timerInterval) clearInterval(timerInterval);
                 timerInterval = setInterval(() => {
@@ -515,7 +677,6 @@
                     }
                 }, 1000);
                 btn.innerText = 'Pause';
-                btn.className = 'bg-amber-500 hover:bg-amber-600 text-white px-2.5 py-0.5 rounded-lg text-xs font-bold';
             }
         }
 
@@ -539,6 +700,7 @@
         }
 
         // Init
+        renderMascotPicker();
         renderRecipes();
     </script>
 </body>
