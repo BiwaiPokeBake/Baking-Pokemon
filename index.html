@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baking Pokémon • Buku Resep Baking 🧁✨</title>
+    <title>Dapur Resep Baking Eevolution 🧁✨</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -53,33 +53,47 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
 
-        /* ANIMASI MASCOT BERJALAN */
-        @keyframes walkAround {
-            0% { transform: translateX(0) scaleX(1); }
-            48% { transform: translateX(calc(100vw - 120px)) scaleX(1); }
-            50% { transform: translateX(calc(100vw - 120px)) scaleX(-1); }
-            98% { transform: translateX(0) scaleX(-1); }
-            100% { transform: translateX(0) scaleX(1); }
+        /* ANIMASI MOVEMENT CONTAINER */
+        @keyframes walkContainer {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(calc(100vw - 120px)); }
+            100% { transform: translateX(0); }
         }
 
-        .walking-mascot-anim {
-            animation: walkAround 18s linear infinite;
+        /* ANIMASI SPRITE GAMBAR (PEMBALIKAN ARAH JALAN) */
+        @keyframes flipSprite {
+            0%, 49.9% { transform: scaleX(1); }
+            50%, 99.9% { transform: scaleX(-1); }
+            100% { transform: scaleX(1); }
         }
 
-        /* ANIMASI BOUNCE SAAT DIKLIK */
+        .walking-container-anim {
+            animation: walkContainer 20s linear infinite;
+        }
+
+        .walking-sprite-anim {
+            animation: flipSprite 20s infinite;
+        }
+
         @keyframes mascotBounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px) scale(1.1); }
+            50% { transform: translateY(-18px); }
         }
 
         .mascot-bounce {
             animation: mascotBounce 0.4s ease-in-out;
         }
+
+        /* Pixelated style untuk sprite retro */
+        .pixelated {
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative overflow-x-hidden pb-20">
 
-    <!-- Audio Element untuk Musik & Sound Effect -->
+    <!-- Audio Element -->
     <audio id="bgMusic" loop>
         <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
     </audio>
@@ -91,19 +105,18 @@
     <header class="bg-custom-card border-b-2 border-custom sticky top-0 z-40 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 py-3.5 flex flex-wrap justify-between items-center gap-3">
             <div class="flex items-center gap-3">
-                <div class="bg-custom-secondary p-2.5 rounded-2xl border border-custom flex items-center justify-center w-11 h-11 shadow-sm">
+                <div class="bg-custom-secondary p-2 rounded-2xl border border-custom flex items-center justify-center w-11 h-11 shadow-sm">
                     <span class="text-2xl">🧁</span>
                 </div>
                 <div>
                     <h1 class="text-xl md:text-2xl font-bold tracking-wide text-custom-main font-fun leading-tight">
-                        Baking Pokémon
+                        Dapur Resep Baking Eevolution
                     </h1>
-                    <p class="text-[11px] text-custom-primary font-bold">Dapur Resep Baking Pikachu & Eeveelutions ✨</p>
+                    <p class="text-[11px] text-custom-primary font-bold">Resep Manis & Lucu Bersama Eeveelutions ✨</p>
                 </div>
             </div>
             
             <div class="flex items-center gap-2">
-                <!-- Single Audio Toggle Button -->
                 <button onclick="toggleMusic()" id="musicToggleBtn" class="bg-custom-secondary hover:bg-opacity-80 text-custom-main px-3.5 py-2 rounded-2xl text-xs font-bold border border-custom flex items-center gap-2 transition shadow-sm">
                     <span id="musicIcon">🎵</span> <span id="musicStatusText">Musik: OFF</span>
                 </button>
@@ -123,16 +136,16 @@
     <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full z-10">
 
         <!-- Banner Hero -->
-        <div class="bg-custom-secondary rounded-3xl p-5 md:p-7 mb-7 border border-custom shadow-sm bg-dots flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <div class="bg-custom-secondary rounded-3xl p-5 md:p-6 mb-7 border border-custom shadow-sm bg-dots flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
             <div class="space-y-2 text-center md:text-left z-10">
-                <span class="bg-custom-primary text-white text-[10px] uppercase font-extrabold px-3.5 py-1 rounded-full shadow-sm tracking-wider">Khusus Pokémon & Eeveelutions 🥐</span>
-                <h2 class="text-2xl md:text-3xl font-bold text-custom-main font-fun mt-1 leading-tight">Dapur Resep Baking Pokémon</h2>
-                <p class="text-xs text-custom-primary font-semibold max-w-md">Foto kue sangat jelas dan tidak terpotong (bisa atur fokus vertikal). Pilih Pokémon favoritmu untuk berjalan-jalan di layar!</p>
+                <span class="bg-custom-primary text-white text-[10px] uppercase font-extrabold px-3.5 py-1 rounded-full shadow-sm tracking-wider">KHUSUS EEVEE & 8 EEVEELUTIONS 🐻✨</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-custom-main font-fun mt-1 leading-tight">Dapur Resep Baking Eevolution</h2>
+                <p class="text-xs text-custom-primary font-semibold max-w-md">Pilih Eevolution favoritmu untuk jalan-jalan di layar!</p>
             </div>
             
             <!-- Mascot Picker -->
             <div class="z-10 bg-custom-card/90 backdrop-blur-md p-3 rounded-2xl border border-custom shadow-sm flex flex-col items-center md:items-start gap-2 max-w-full">
-                <span class="text-[11px] font-extrabold text-custom-main uppercase tracking-wider">Pilih Pokémon Berjalan:</span>
+                <span class="text-[10px] font-extrabold text-custom-main uppercase tracking-wider">PILIH EEVELUTION BERJALAN:</span>
                 <div class="flex gap-2 overflow-x-auto py-1 max-w-xs sm:max-w-md custom-scrollbar" id="mascotPicker">
                     <!-- Rendered Dynamically -->
                 </div>
@@ -161,7 +174,7 @@
         <div id="emptyState" class="hidden text-center py-12 bg-custom-card rounded-3xl border-2 border-dashed border-custom p-8 my-6">
             <div class="text-6xl mb-3">🧁✨</div>
             <h3 class="text-xl font-bold text-custom-main font-fun">Belum Ada Resep Baking!</h3>
-            <p class="text-slate-400 text-xs mt-1">Yuk buat resep kue pertamamu bersama Pokémon favoritmu!</p>
+            <p class="text-slate-400 text-xs mt-1">Yuk buat resep kue pertamamu bersama Eeveelutions!</p>
             <button onclick="openModal()" class="mt-4 bg-custom-primary text-white font-bold px-5 py-2.5 rounded-2xl text-xs shadow-md transition hover:scale-105">
                 + Tambah Resep Baru
             </button>
@@ -169,13 +182,15 @@
 
     </main>
 
-    <!-- Pokémon Berjalan & Interaktif di Layar -->
+    <!-- Pokémon Berjalan Interaktif Tanpa Teks Terbalik -->
     <div id="walkingContainer" class="fixed bottom-0 left-0 w-full pointer-events-none z-30 h-24 overflow-hidden">
-        <div id="walkingMascot" class="walking-mascot-anim pointer-events-auto cursor-pointer absolute bottom-1 flex flex-col items-center" onclick="interactMascot()">
+        <div id="walkingMascot" class="walking-container-anim pointer-events-auto cursor-pointer absolute bottom-1 flex flex-col items-center" onclick="interactMascot()">
+            <!-- Bubble Teks (Bebas dari Efek Scale Mirror) -->
             <div id="mascotBubble" class="bg-custom-card border border-custom shadow-xl px-3 py-1 rounded-2xl text-[11px] font-bold text-custom-main mb-1 whitespace-nowrap flex items-center gap-1.5 transition-all">
-                <span id="bubbleText">Pika-pika! Ayo baking kue! 🧁</span>
+                <span id="bubbleText">Vee-vee! Aku lagi jalan-jalan di dapur! 🧁</span>
             </div>
-            <img id="walkingSprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-16 h-16 object-contain filter drop-shadow-md transition-transform">
+            <!-- Gambar Sprite Pokémon (Mengalami pembalikan animasi) -->
+            <img id="walkingSprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif" class="w-14 h-14 object-contain pixelated walking-sprite-anim">
         </div>
     </div>
 
@@ -207,7 +222,7 @@
         </div>
 
         <div class="flex gap-2 mt-1">
-            <button onclick="toggleTimer()" id="timerStartBtn" class="flex-1 bg-custom-primary text-white py-2 rounded-2xl text-xs font-bold shadow-md">Start Timer</button>
+            <button onclick="toggleTimer()" id="timerStartBtn" class="flex-1 bg-custom-primary text-white py-2 rounded-2xl text-xs font-bold shadow-md">Mulai Timer</button>
             <button onclick="resetTimer()" class="bg-slate-100 text-slate-600 px-3.5 py-2 rounded-2xl text-xs font-bold hover:bg-slate-200">Reset</button>
         </div>
     </div>
@@ -227,7 +242,7 @@
                 
                 <div>
                     <label class="block text-[10px] font-extrabold text-slate-400 uppercase mb-1.5">Nama Olahan Kue *</label>
-                    <input type="text" id="titleInput" required placeholder="Contoh: Pikachu Fluffy Pancake / Sylveon Berry Shortcake" class="w-full px-3.5 py-2.5 bg-custom-secondary border border-custom rounded-2xl focus:ring-2 focus:ring-custom-primary focus:outline-none text-xs font-semibold">
+                    <input type="text" id="titleInput" required placeholder="Contoh: Sylveon Berry Shortcake" class="w-full px-3.5 py-2.5 bg-custom-secondary border border-custom rounded-2xl focus:ring-2 focus:ring-custom-primary focus:outline-none text-xs font-semibold">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
@@ -246,9 +261,8 @@
                     </div>
                 </div>
 
-                <!-- Upload Foto & Posisi Vertikal Foto -->
                 <div class="bg-custom-secondary p-3.5 rounded-2xl border border-custom space-y-3">
-                    <label class="block text-[10px] font-extrabold text-custom-main uppercase">📸 Foto Makanan (Atur Fokus Vertikal Gambar)</label>
+                    <label class="block text-[10px] font-extrabold text-custom-main uppercase">📸 Foto Makanan</label>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <div>
                             <span class="text-[9px] font-bold text-slate-400">Upload dari Galeri:</span>
@@ -260,25 +274,15 @@
                         </div>
                     </div>
 
-                    <div id="imagePosControls" class="bg-white/80 p-2.5 rounded-xl border border-custom space-y-1.5">
-                        <span class="text-[10px] font-extrabold text-custom-main block">🎯 Atur Fokus Posisi Vertikal:</span>
-                        <select id="imgPosSelect" class="bg-custom-secondary border border-custom text-xs font-bold rounded-lg px-2 py-1 text-custom-main focus:outline-none w-full">
-                            <option value="center">Tengah (Center)</option>
-                            <option value="top">Atas (Top - jika bagian atas terpotong)</option>
-                            <option value="bottom">Bawah (Bottom)</option>
-                        </select>
-                    </div>
-
                     <div id="imagePreviewContainer" class="hidden relative w-full h-48 rounded-2xl overflow-hidden border border-custom">
                         <img id="imagePreview" class="w-full h-full object-cover">
                         <button type="button" onclick="removeRecipeImage()" class="absolute top-2 right-2 bg-rose-500 text-white rounded-full w-6 h-6 text-xs font-bold flex items-center justify-center shadow-md">✕</button>
                     </div>
                 </div>
 
-                <!-- Pokémon Companion Selector -->
                 <div>
-                    <label class="block text-[10px] font-extrabold text-slate-400 uppercase mb-1.5">Pilih Pokémon Companion 🌸 (Pikachu & Kawan-kawan + Eeveelutions)</label>
-                    <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 max-h-48 overflow-y-auto p-1 custom-scrollbar" id="pokemonSelector">
+                    <label class="block text-[10px] font-extrabold text-slate-400 uppercase mb-1.5">Pilih Eevolution Companion 🌸</label>
+                    <div class="grid grid-cols-3 sm:grid-cols-5 gap-2 max-h-48 overflow-y-auto p-1 custom-scrollbar" id="pokemonSelector">
                         <!-- Rendered dynamically -->
                     </div>
                 </div>
@@ -310,32 +314,22 @@
     </div>
 
     <script>
-        // DAFTAR POKEMON PIKACHU + FRIENDS & SELURUH KELUARGA EEVEELUTIONS
+        // DAFTAR ANIMATED PIXEL SPRITES EEVEE & EEVEELUTIONS
         const POKEMON_CHEFS = [
-            // Pikachu & Friends
-            { id: 'pikachu', name: 'Pikachu ⚡', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png', quote: 'Pika-pika! Adonannya siap dipanggang! 🥞' },
-            { id: 'jigglypuff', name: 'Jigglypuff 🎤', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png', quote: 'Jigglyyy! Chiffon cake selembut awan! ☁️' },
-            { id: 'togepi', name: 'Togepi 🐣', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/175.png', quote: 'Toge-toge priii! Kue manis siap disajikan! ✨' },
-            { id: 'snorlax', name: 'Snorlax 💤', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png', quote: 'Snorlax siap mencicipi semua resep enak! 😋' },
-            { id: 'squirtle', name: 'Squirtle 💧', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png', quote: 'Squir-squir! Sirup topping manis siap! 🍯' },
-            { id: 'charmander', name: 'Charmander 🔥', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png', quote: 'Char-char! Api oven sudah sangat pas! 🔥' },
-            { id: 'bulbasaur', name: 'Bulbasaur 🍃', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png', quote: 'Bulba-bulba! Beri hiasan daun mint segar! 🌿' },
-
-            // Eeveelutions
-            { id: 'eevee', name: 'Eevee 🤎', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png', quote: 'Vee-vee! Aromanya sangat harum manis! 🥐' },
-            { id: 'vaporeon', name: 'Vaporeon 🌊', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png', quote: 'Vapor-vapor! Dessert dingin segar siap! 🍧' },
-            { id: 'jolteon', name: 'Jolteon ⚡', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png', quote: 'Jolt-jolt! Memanggang kue cepat kilat! ⚡' },
-            { id: 'flareon', name: 'Flareon 🔥', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png', quote: 'Flare-flare! Suhu pemanggang sempurna! ♨️' },
-            { id: 'espeon', name: 'Espeon 🔮', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/196.png', quote: 'Espe-espe! Hasil baking begitu cantik! ✨' },
-            { id: 'umbreon', name: 'Umbreon 🌙', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/197.png', quote: 'Umb-umb! Cocok untuk camilan malam! 🍪' },
-            { id: 'leafeon', name: 'Leafeon 🍃', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png', quote: 'Leaf-leaf! Matcha cake herbal harum! 🍵' },
-            { id: 'glaceon', name: 'Glaceon ❄️', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png', quote: 'Glace-glace! Es krim cake dingin lezat! 🍦' },
-            { id: 'sylveon', name: 'Sylveon 🎀', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/700.png', quote: 'Sylv-sylv! Dekorasi kuenya cantik banget! 🎀' }
+            { id: 'eevee', name: 'Eevee', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/133.gif', quote: 'Vee-vee! Aku lagi jalan-jalan di dapur! 🧁' },
+            { id: 'vaporeon', name: 'Vaporeon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/134.gif', quote: 'Vapor-vapor! Bikin dessert dingin yuk! 🍧' },
+            { id: 'jolteon', name: 'Jolteon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/135.gif', quote: 'Jolt-jolt! Baking kilat super cepat! ⚡' },
+            { id: 'flareon', name: 'Flareon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/136.gif', quote: 'Flare-flare! Ovennya sudah hangat pas! ♨️' },
+            { id: 'espeon', name: 'Espeon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/196.gif', quote: 'Espe-espe! Hasil baking manis sekali! ✨' },
+            { id: 'umbreon', name: 'Umbreon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/197.gif', quote: 'Umb-umb! Camilan cookies malam hari! 🍪' },
+            { id: 'leafeon', name: 'Leafeon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/470.gif', quote: 'Leaf-leaf! Aroma matcha harum sekali! 🍵' },
+            { id: 'glaceon', name: 'Glaceon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/471.gif', quote: 'Glace-glace! Es krim cake sudah jadi! 🍦' },
+            { id: 'sylveon', name: 'Sylveon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/700.gif', quote: 'Sylv-sylv! Hiasan kuelnya cantik banget! 🎀' }
         ];
 
         let recipes = JSON.parse(localStorage.getItem('pokemon_baking_recipes')) || [];
         let currentFilter = 'All';
-        let selectedPokemonChef = 'pikachu';
+        let selectedPokemonChef = 'eevee';
         let currentMascotIndex = 0;
         let currentRecipeImage = '';
         let isMusicPlaying = false;
@@ -361,7 +355,7 @@
                     isMusicPlaying = true;
                     icon.innerText = '🎶';
                     text.innerText = 'Musik: ON';
-                }).catch(() => { alert('Klik di mana saja pada layar untuk mengizinkan pemutaran musik!'); });
+                }).catch(() => { alert('Klik di mana saja pada layar untuk izinkan musik!'); });
             }
         }
 
@@ -369,25 +363,23 @@
             recipes = [
                 {
                     id: '1',
-                    title: 'Roti Gandum Biji-Bijian Eevee 🍞',
+                    title: 'Roti Gandum Eevee 🍞',
                     category: 'Roti',
                     time: 40,
                     chef: 'eevee',
                     foodImage: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
-                    imgPos: 'center',
-                    ingredients: ['300g Tepung Gandum', '1 sdm Ragi Instan', '200ml Air Hangat', 'Biji-bijian Topping'],
+                    ingredients: ['300g Tepung Gandum', '1 sdm Ragi Instan', '200ml Air Hangat'],
                     steps: ['Campur tepung dan ragi.', 'Uleni adonan hingga kalis.', 'Panggang hingga krispi.']
                 },
                 {
                     id: '2',
-                    title: 'Sylveon Raspberry Layer Shortcake 🍰',
+                    title: 'Sylveon Strawberry Cake 🍰',
                     category: 'Kue & Cake',
                     time: 45,
                     chef: 'sylveon',
                     foodImage: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80',
-                    imgPos: 'center',
-                    ingredients: ['200g Tepung Cake', '150g Buah Raspberry', '200ml Whipping Cream', '100g Gula'],
-                    steps: ['Buat adonan cake spon.', 'Panggang dan belah dua.', 'Lapisi krim manis dan buah raspberry.']
+                    ingredients: ['200g Tepung Cake', '150g Buah Strawberry', '200ml Whipping Cream'],
+                    steps: ['Buat adonan cake spon.', 'Panggang dan belah dua.', 'Lapisi krim manis dan buah strawberry.']
                 }
             ];
             saveToStorage();
@@ -398,8 +390,8 @@
         function renderMascotPicker() {
             const container = document.getElementById('mascotPicker');
             container.innerHTML = POKEMON_CHEFS.map((p, idx) => `
-                <button onclick="changeLiveMascot(${idx})" class="w-10 h-10 rounded-2xl border border-custom flex items-center justify-center p-1.5 hover:scale-110 transition bg-custom-secondary shadow-sm shrink-0 ${currentMascotIndex === idx ? 'ring-2 ring-custom-primary' : ''}">
-                    <img src="${p.img}" class="w-full h-full object-contain">
+                <button onclick="changeLiveMascot(${idx})" class="w-10 h-10 rounded-2xl border border-custom flex items-center justify-center p-1 hover:scale-110 transition bg-custom-secondary shadow-sm shrink-0 ${currentMascotIndex === idx ? 'ring-2 ring-custom-primary' : ''}">
+                    <img src="${p.img}" class="w-full h-full object-contain pixelated">
                 </button>
             `).join('');
         }
@@ -418,14 +410,12 @@
             const mascot = POKEMON_CHEFS[currentMascotIndex];
             const mascotEl = document.getElementById('walkingMascot');
             
-            // Effect bounce animation
             mascotEl.classList.add('mascot-bounce');
             setTimeout(() => mascotEl.classList.remove('mascot-bounce'), 400);
 
             const randomQuotes = [
-                `Ayo buat resep kue lezat bareng ${mascot.name}! 🧁`,
-                `Wah, bau adonannya wangi banget! ✨`,
-                `Resep hari ini pasti enak sekali! 🥰`,
+                `Ayo bikin resep manis bareng ${mascot.name}! 🧁`,
+                `Wah, bau kue di oven wangi sekali! ✨`,
                 mascot.quote
             ];
             document.getElementById('bubbleText').innerText = randomQuotes[Math.floor(Math.random() * randomQuotes.length)];
@@ -435,8 +425,8 @@
             const container = document.getElementById('pokemonSelector');
             container.innerHTML = POKEMON_CHEFS.map(p => `
                 <div onclick="selectChef('${p.id}')" class="cursor-pointer border-2 p-2 rounded-2xl flex flex-col items-center justify-center text-center transition ${selectedPokemonChef === p.id ? 'border-custom bg-custom-secondary scale-105 shadow-sm' : 'border-slate-100'}">
-                    <img src="${p.img}" class="w-10 h-10 object-contain">
-                    <span class="text-[9px] font-extrabold mt-1 text-slate-600 line-clamp-1">${p.name.split(' ')[0]}</span>
+                    <img src="${p.img}" class="w-10 h-10 object-contain pixelated">
+                    <span class="text-[9px] font-extrabold mt-1 text-slate-600 line-clamp-1">${p.name}</span>
                 </div>
             `).join('');
         }
@@ -465,13 +455,8 @@
         function showImagePreview(url) {
             const img = document.getElementById('imagePreview');
             img.src = url;
-            img.style.objectPosition = document.getElementById('imgPosSelect').value;
             document.getElementById('imagePreviewContainer').classList.remove('hidden');
         }
-
-        document.getElementById('imgPosSelect').addEventListener('change', function(e) {
-            document.getElementById('imagePreview').style.objectPosition = e.target.value;
-        });
 
         function removeRecipeImage() {
             currentRecipeImage = '';
@@ -500,28 +485,28 @@
             empty.classList.add('hidden');
             grid.innerHTML = filtered.map(r => {
                 const chef = POKEMON_CHEFS.find(p => p.id === r.chef) || POKEMON_CHEFS[0];
-                const pos = r.imgPos || 'center';
 
                 return `
                     <div class="bg-custom-card rounded-3xl p-5 border border-custom shadow-sm bakery-card flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-center mb-3">
-                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-custom-secondary text-custom-main border border-custom">🌸 ${chef.name}</span>
+                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-custom-secondary text-custom-main border border-custom flex items-center gap-1.5">
+                                    <img src="${chef.img}" class="w-5 h-5 object-contain pixelated"> ${chef.name}
+                                </span>
                                 <span class="text-xs font-bold bg-custom-secondary text-custom-primary px-3 py-1 rounded-full border border-custom">⏱️ ${r.time || 30} m</span>
                             </div>
 
-                            <!-- FOTO MAKANAN BESAR BERSIH & FOKUS BISA DIATUR -->
-                            <div class="my-3 flex justify-center items-center rounded-2xl border border-custom h-56 relative overflow-hidden bg-dots bg-custom-secondary">
+                            <div class="my-3 flex justify-center items-center rounded-2xl border border-custom h-52 relative overflow-hidden bg-custom-secondary">
                                 ${r.foodImage ? `
-                                    <img src="${r.foodImage}" class="w-full h-full object-cover transition" style="object-position: ${pos};">
+                                    <img src="${r.foodImage}" class="w-full h-full object-cover">
                                     <div class="absolute bottom-2.5 right-2.5 bg-white/95 p-1.5 px-2.5 rounded-2xl border border-custom shadow-xl flex items-center gap-2">
-                                        <img src="${chef.img}" class="w-8 h-8 object-contain">
-                                        <span class="text-[10px] font-extrabold text-custom-main">${chef.name.split(' ')[0]}</span>
+                                        <img src="${chef.img}" class="w-6 h-6 object-contain pixelated">
+                                        <span class="text-[10px] font-extrabold text-custom-main">${chef.name}</span>
                                     </div>
                                 ` : `
                                     <div class="flex flex-col items-center justify-center p-4">
-                                        <img src="${chef.img}" class="h-36 object-contain">
-                                        <span class="text-xs font-bold text-custom-primary mt-2">Kue Khas ${chef.name}</span>
+                                        <img src="${chef.img}" class="h-28 object-contain pixelated">
+                                        <span class="text-xs font-bold text-custom-primary mt-2">Kue ${chef.name}</span>
                                     </div>
                                 `}
                             </div>
@@ -551,7 +536,7 @@
             playClickSound();
             document.getElementById('recipeId').value = '';
             document.getElementById('recipeForm').reset();
-            selectedPokemonChef = 'pikachu';
+            selectedPokemonChef = 'eevee';
             removeRecipeImage();
             renderPokemonSelector();
             document.getElementById('recipeModal').classList.remove('hidden');
@@ -568,12 +553,11 @@
             const time = parseInt(document.getElementById('timeInput').value) || 30;
             const urlInput = document.getElementById('imageUrlInput').value;
             const foodImage = urlInput || currentRecipeImage;
-            const imgPos = document.getElementById('imgPosSelect').value;
 
             const ingredients = document.getElementById('ingredientsInput').value.split('\n').filter(i => i.trim() !== '');
             const steps = document.getElementById('stepsInput').value.split('\n').filter(s => s.trim() !== '');
 
-            recipes.unshift({ id, title, category, time, chef: selectedPokemonChef, foodImage, imgPos, ingredients, steps });
+            recipes.unshift({ id, title, category, time, chef: selectedPokemonChef, foodImage, ingredients, steps });
             saveToStorage();
             renderRecipes();
             closeModal();
@@ -581,7 +565,7 @@
 
         function deleteRecipe(id) {
             playClickSound();
-            if (confirm('Yakin mau menghapus resep kue ini? 🥺')) {
+            if (confirm('Yakin mau hapus resep ini? 🥺')) {
                 recipes = recipes.filter(r => r.id !== id);
                 saveToStorage();
                 renderRecipes();
@@ -596,8 +580,8 @@
 
             document.getElementById('viewContent').innerHTML = `
                 ${r.foodImage ? `
-                    <div class="relative w-full h-72 rounded-3xl overflow-hidden mb-4 border border-custom">
-                        <img src="${r.foodImage}" class="w-full h-full object-cover" style="object-position: ${r.imgPos || 'center'}">
+                    <div class="relative w-full h-64 rounded-3xl overflow-hidden mb-4 border border-custom">
+                        <img src="${r.foodImage}" class="w-full h-full object-cover">
                     </div>
                 ` : ''}
                 <h2 class="text-2xl font-bold text-custom-main font-fun">${r.title}</h2>
@@ -612,7 +596,6 @@
 
         function closeViewModal() { document.getElementById('viewModal').classList.add('hidden'); }
 
-        /* Baking Timer System */
         let timerInterval = null;
         function openTimerWidget() { playClickSound(); document.getElementById('timerWidget').classList.remove('hidden'); }
         function closeTimerWidget() { resetTimer(); document.getElementById('timerWidget').classList.add('hidden'); }
@@ -629,7 +612,7 @@
             if (timerInterval) {
                 clearInterval(timerInterval);
                 timerInterval = null;
-                btn.innerText = 'Start Timer';
+                btn.innerText = 'Mulai Timer';
             } else {
                 let mins = parseInt(document.getElementById('timerMinInput').value) || 0;
                 let secs = parseInt(document.getElementById('timerSecInput').value) || 0;
@@ -645,11 +628,11 @@
                     } else {
                         clearInterval(timerInterval);
                         timerInterval = null;
-                        btn.innerText = 'Start Timer';
-                        alert('⏰ Ting! Waktu baking kue selesai!');
+                        btn.innerText = 'Mulai Timer';
+                        alert('⏰ Waktu baking selesai!');
                     }
                 }, 1000);
-                btn.innerText = 'Pause Timer';
+                btn.innerText = 'Jeda Timer';
             }
         }
 
@@ -658,7 +641,7 @@
             timerInterval = null;
             document.getElementById('timerMinInput').value = '30';
             document.getElementById('timerSecInput').value = '00';
-            document.getElementById('timerStartBtn').innerText = 'Start Timer';
+            document.getElementById('timerStartBtn').innerText = 'Mulai Timer';
         }
 
         renderMascotPicker();
