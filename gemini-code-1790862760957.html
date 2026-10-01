@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Resep Baking Pokémon Chef 🧑‍🍳🧁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FFF5F7;
+        }
+        h1, h2, h3, .font-fun {
+            font-family: 'Fredoka', cursive;
+        }
+        .pokemon-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .pokemon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.3);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #FFE4E6;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #FB7185;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="text-slate-700 min-h-screen flex flex-col">
+
+    <!-- Header Navbar -->
+    <header class="bg-gradient-to-r from-pink-400 via-rose-300 to-amber-200 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-white p-2 rounded-full shadow-inner flex items-center justify-center w-12 h-12">
+                    <span class="text-2xl">🧁</span>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide flex items-center gap-2">
+                        Dapur Baking Pokémon <span class="text-sm bg-yellow-300 text-amber-900 px-2 py-0.5 rounded-full font-sans font-bold">Chef Edition 🧑‍🍳</span>
+                    </h1>
+                    <p class="text-xs text-pink-100 hidden sm:block">Simpan resep manismu bersama para Pokémon Chef!</p>
+                </div>
+            </div>
+            
+            <div class="flex gap-2">
+                <button onclick="exportData()" title="Cadangkan File" class="bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-xl text-sm font-semibold backdrop-blur-sm transition flex items-center gap-1.5 border border-white/30">
+                    <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Backup</span>
+                </button>
+                <label title="Pulihkan File" class="bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-xl text-sm font-semibold backdrop-blur-sm transition flex items-center gap-1.5 border border-white/30 cursor-pointer">
+                    <i class="fa-solid fa-upload"></i> <span class="hidden sm:inline">Restore</span>
+                    <input type="file" id="importFile" onchange="importData(event)" class="hidden" accept=".json">
+                </label>
+                <button onclick="openModal()" class="bg-yellow-400 hover:bg-yellow-300 text-amber-900 font-bold px-4 py-1.5 rounded-xl shadow-md text-sm transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-plus"></i> Resep Baru
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full">
+
+        <!-- Search & Filter Bar -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
+            <div class="relative w-full md:w-96">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-rose-300"></i>
+                <input type="text" id="searchInput" oninput="renderRecipes()" placeholder="Cari resep manis..." class="w-full pl-10 pr-4 py-2 bg-pink-50/50 border border-pink-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-400 text-sm">
+            </div>
+            
+            <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                <button onclick="filterCategory('All')" class="category-btn active px-4 py-1.5 rounded-xl text-sm font-bold bg-rose-500 text-white shadow-sm whitespace-nowrap">Semua</button>
+                <button onclick="filterCategory('Kue & Cake')" class="category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-pink-100 text-rose-600 hover:bg-rose-200 whitespace-nowrap">🍰 Kue & Cake</button>
+                <button onclick="filterCategory('Roti')" class="category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-amber-100 text-amber-700 hover:bg-amber-200 whitespace-nowrap">🍞 Roti</button>
+                <button onclick="filterCategory('Biskuit & Cookies')" class="category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-orange-100 text-orange-700 hover:bg-orange-200 whitespace-nowrap">🍪 Cookies</button>
+                <button onclick="filterCategory('Dessert & Pastry')" class="category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-purple-100 text-purple-700 hover:bg-purple-200 whitespace-nowrap">🧁 Dessert</button>
+            </div>
+        </div>
+
+        <!-- Recipe Grid -->
+        <div id="recipeGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic Recipe Cards -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-12">
+            <div class="text-6xl mb-3">🧑‍🍳✨</div>
+            <h3 class="text-xl font-bold text-slate-600 font-fun">Belum Ada Resep Baking Nih!</h3>
+            <p class="text-slate-400 text-sm mt-1">Yuk tambahkan resep favoritmu dan pilih Chef Pokémon pendampingmu!</p>
+            <button onclick="openModal()" class="mt-4 bg-rose-500 hover:bg-rose-600 text-white font-bold px-5 py-2 rounded-xl text-sm shadow-md transition">
+                + Buat Resep Pertama
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Baking Timer Widget Floating -->
+    <div id="timerWidget" class="fixed bottom-4 right-4 bg-white/95 backdrop-blur border-2 border-rose-300 rounded-2xl shadow-xl p-3 z-40 hidden flex items-center gap-3">
+        <div class="bg-rose-100 text-rose-600 p-2.5 rounded-xl font-bold text-xl min-w-[70px] text-center" id="timerDisplay">
+            00:00
+        </div>
+        <div>
+            <div class="text-xs font-bold text-slate-500 uppercase tracking-wide">Baking Timer ⏲️</div>
+            <div class="flex gap-1 mt-1">
+                <button onclick="toggleTimer()" id="timerStartBtn" class="bg-rose-500 hover:bg-rose-600 text-white px-2.5 py-0.5 rounded-lg text-xs font-bold">Start</button>
+                <button onclick="resetTimer()" class="bg-slate-200 hover:bg-slate-300 text-slate-600 px-2.5 py-0.5 rounded-lg text-xs font-bold">Reset</button>
+            </div>
+        </div>
+        <button onclick="closeTimerWidget()" class="text-slate-400 hover:text-slate-600 text-xs px-1">✕</button>
+    </div>
+
+    <!-- Modal Form Resep -->
+    <div id="recipeModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl border-4 border-pink-200 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="modalTitle" class="text-2xl font-bold text-rose-600 font-fun flex items-center gap-2">
+                    <span>🧑‍🍳</span> Tambah Resep Baking Baru
+                </h2>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-rose-500 text-xl font-bold">✕</button>
+            </div>
+
+            <form id="recipeForm" onsubmit="saveRecipe(event)" class="space-y-4">
+                <input type="hidden" id="recipeId">
+                
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Olahan Baking *</label>
+                    <input type="text" id="titleInput" required placeholder="Contoh: Pikachu Strawberry Shortcake" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Kategori</label>
+                        <select id="categoryInput" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm">
+                            <option value="Kue & Cake">🍰 Kue & Cake</option>
+                            <option value="Roti">🍞 Roti</option>
+                            <option value="Biskuit & Cookies">🍪 Cookies</option>
+                            <option value="Dessert & Pastry">🧁 Dessert & Pastry</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Waktu Baking (Menit)</label>
+                        <input type="number" id="timeInput" min="1" placeholder="45" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm">
+                    </div>
+                </div>
+
+                <!-- Pilih Pokemon Chef Mascot -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Pilih Head Chef Pokémon 🧑‍🍳</label>
+                    <div class="grid grid-cols-5 gap-2" id="pokemonSelector">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Bahan - Bahan (Satu per baris) *</label>
+                    <textarea id="ingredientsInput" required rows="4" placeholder="200g Tepung Terigu&#10;100g Mentega&#10;2 Butir Telur&#10;50g Gula Halus" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Langkah Pembuatan (Satu per baris) *</label>
+                    <textarea id="stepsInput" required rows="4" placeholder="1. Kocok mentega dan gula hingga lembut&#10;2. Masukkan telur satu per satu&#10;3. Panggang di oven suhu 180°C selama 30 menit" class="w-full px-3 py-2 border border-pink-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:outline-none text-sm"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl text-slate-500 hover:bg-slate-100 text-sm font-semibold">Batal</button>
+                    <button type="submit" class="px-5 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-sm font-bold shadow-md">Simpan Resep</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal View Resep Detail -->
+    <div id="viewModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border-4 border-pink-200 max-h-[90vh] overflow-y-auto custom-scrollbar relative">
+            <button onclick="closeViewModal()" class="absolute right-5 top-5 bg-pink-100 text-rose-500 hover:bg-rose-500 hover:text-white rounded-full w-8 h-8 flex items-center justify-center font-bold transition">✕</button>
+            
+            <div id="viewContent">
+                <!-- Content inserted dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-rose-100/60 border-t border-rose-200 py-4 mt-8 text-center text-xs text-rose-400 font-semibold">
+        Buku Resep Baking Pokémon • Tersimpan Otomatis di Browser 💖
+    </footer>
+
+    <script>
+        // List Pokemon Chef dengan Aksesoris Topi Chef SVG / Badge
+        const POKEMON_CHEFS = [
+            { id: 'pikachu', name: 'Chef Pikachu', icon: '⚡', color: 'bg-yellow-100 border-yellow-300 text-yellow-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png' },
+            { id: 'jigglypuff', name: 'Chef Jigglypuff', icon: '🎤', color: 'bg-pink-100 border-pink-300 text-pink-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png' },
+            { id: 'eevee', name: 'Chef Eevee', icon: '🤎', color: 'bg-amber-100 border-amber-300 text-amber-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png' },
+            { id: 'snorlax', name: 'Chef Snorlax', icon: '🥐', color: 'bg-teal-100 border-teal-300 text-teal-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png' },
+            { id: 'charmander', name: 'Chef Charmander', icon: '🔥', color: 'bg-orange-100 border-orange-300 text-orange-800', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png' }
+        ];
+
+        let recipes = JSON.parse(localStorage.getItem('pokemon_baking_recipes')) || [];
+        let currentFilter = 'All';
+        let selectedPokemonChef = 'pikachu';
+
+        // Sample Data jika kosong
+        if (recipes.length === 0) {
+            recipes = [
+                {
+                    id: '1',
+                    title: 'Pikachu Soft Fluffy Pancakes 🥞',
+                    category: 'Kue & Cake',
+                    time: 25,
+                    chef: 'pikachu',
+                    ingredients: ['150g Tepung Terigu', '1 sdm Gula Pasir', '1 sdt Baking Powder', '1 Butir Telur', '150ml Susu Cair', 'Mentega secukupnya'],
+                    steps: ['Campurkan tepung terigu, gula, dan baking powder dalam wadah.', 'Kocok telur dan susu cair, lalu tuang ke adonan kering.', 'Aduk perlahan hingga rata (jangan terlalu lama).', 'Panaskan teflon, olesi mentega tipis.', 'Tuang 1 sendok sayur adonan, masak hingga bersarang lalu balik.', 'Sajikan hangat dengan madu & sirup!']
+                },
+                {
+                    id: '2',
+                    title: 'Jigglypuff Strawberry Chiffon Cake 🍰',
+                    category: 'Kue & Cake',
+                    time: 60,
+                    chef: 'jigglypuff',
+                    ingredients: ['4 Butir Telur (pisahkan kuning & putih)', '80g Gula Halus', '100g Tepung Terigu', '50ml Minyak Goreng', '60ml Susu Rasa Stroberi', 'Pewarna Merah Muda'],
+                    steps: ['Kocok kuning telur, minyak, susu stroberi, dan tepung hingga rata.', 'Di wadah terpisah, kocok putih telur dan gula hingga kaku (meringue).', 'Campurkan meringue ke adonan kuning secara bertahap dengan teknik aduk balik.', 'Panggang di oven suhu 160°C selama 45 menit.', 'Hias dengan whipped cream dan stroberi segar!']
+                }
+            ];
+            saveToStorage();
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('pokemon_baking_recipes', JSON.stringify(recipes));
+        }
+
+        function renderPokemonSelector() {
+            const container = document.getElementById('pokemonSelector');
+            container.innerHTML = POKEMON_CHEFS.map(p => `
+                <div onclick="selectChef('${p.id}')" class="pokemon-choice cursor-pointer border-2 p-1.5 rounded-2xl flex flex-col items-center justify-center text-center transition ${selectedPokemonChef === p.id ? 'border-rose-500 bg-rose-50 scale-105 shadow-sm' : 'border-slate-200 hover:border-pink-300'}">
+                    <div class="relative w-12 h-12">
+                        <img src="${p.img}" alt="${p.name}" class="w-12 h-12 object-contain">
+                        <span class="absolute -top-1 -right-1 text-xs">🧑‍‍🍳</span>
+                    </div>
+                    <span class="text-[10px] font-bold mt-1 text-slate-600 line-clamp-1">${p.name}</span>
+                </div>
+            `).join('');
+        }
+
+        function selectChef(id) {
+            selectedPokemonChef = id;
+            renderPokemonSelector();
+        }
+
+        function renderRecipes() {
+            const grid = document.getElementById('recipeGrid');
+            const empty = document.getElementById('emptyState');
+            const search = document.getElementById('searchInput').value.toLowerCase();
+
+            const filtered = recipes.filter(r => {
+                const matchCategory = currentFilter === 'All' || r.category === currentFilter;
+                const matchSearch = r.title.toLowerCase().includes(search) || r.ingredients.some(i => i.toLowerCase().includes(search));
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+
+            empty.classList.add('hidden');
+            grid.innerHTML = filtered.map(r => {
+                const chef = POKEMON_CHEFS.find(p => p.id === r.chef) || POKEMON_CHEFS[0];
+                return `
+                    <div class="bg-white rounded-3xl p-5 border-2 border-pink-100 shadow-sm hover:shadow-md pokemon-card relative flex flex-col justify-between">
+                        <div>
+                            <!-- Header Card with Chef Badge -->
+                            <div class="flex justify-between items-start gap-2 mb-3">
+                                <span class="text-xs font-bold px-3 py-1 rounded-full ${chef.color} border flex items-center gap-1 shadow-sm">
+                                    <span>🧑‍🍳</span> ${chef.name}
+                                </span>
+                                <span class="text-xs font-semibold bg-rose-50 text-rose-500 px-2.5 py-1 rounded-lg border border-rose-100">
+                                    ⏱️ ${r.time || 30} m
+                                </span>
+                            </div>
+
+                            <!-- Pokemon Mascot Illustration -->
+                            <div class="my-2 flex justify-center relative py-2 bg-gradient-to-b from-pink-50/50 to-amber-50/30 rounded-2xl border border-pink-100/50">
+                                <img src="${chef.img}" alt="${chef.name}" class="w-24 h-24 object-contain filter drop-shadow-md">
+                                <div class="absolute bottom-1 right-3 text-lg">🧁</div>
+                            </div>
+
+                            <h3 class="font-bold text-lg text-slate-800 font-fun line-clamp-2 mt-2">${r.title}</h3>
+                            <p class="text-xs text-rose-400 font-semibold mb-3">${r.category}</p>
+
+                            <div class="text-xs text-slate-500 space-y-1 mb-4">
+                                <p class="font-bold text-slate-600">Bahan Utama:</p>
+                                <p class="line-clamp-2 italic">${r.ingredients.join(', ')}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 pt-3 border-t border-slate-100">
+                            <button onclick="viewRecipe('${r.id}')" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm flex items-center justify-center gap-1">
+                                <i class="fa-solid fa-book-open"></i> Lihat Resep
+                            </button>
+                            <button onclick="startBakingTimer(${r.time || 30})" class="bg-amber-100 hover:bg-amber-200 text-amber-800 p-2 rounded-xl text-xs font-bold transition" title="Mulai Timer Baking">
+                                ⏲️
+                            </button>
+                            <button onclick="editRecipe('${r.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-600 p-2 rounded-xl text-xs transition">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button onclick="deleteRecipe('${r.id}')" class="bg-red-50 hover:bg-red-100 text-red-500 p-2 rounded-xl text-xs transition">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterCategory(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.innerText.includes(cat) || (cat === 'All' && btn.innerText === 'Semua')) {
+                    btn.className = "category-btn active px-4 py-1.5 rounded-xl text-sm font-bold bg-rose-500 text-white shadow-sm whitespace-nowrap";
+                } else {
+                    btn.className = "category-btn px-4 py-1.5 rounded-xl text-sm font-bold bg-pink-50 text-rose-600 hover:bg-rose-100 whitespace-nowrap";
+                }
+            });
+            renderRecipes();
+        }
+
+        function openModal() {
+            document.getElementById('recipeId').value = '';
+            document.getElementById('recipeForm').reset();
+            document.getElementById('modalTitle').innerText = 'Tambah Resep Baking Baru 🧑‍🍳';
+            selectedPokemonChef = 'pikachu';
+            renderPokemonSelector();
+            document.getElementById('recipeModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('recipeModal').classList.add('hidden');
+        }
+
+        function saveRecipe(e) {
+            e.preventDefault();
+            const id = document.getElementById('recipeId').value || Date.now().toString();
+            const title = document.getElementById('titleInput').value;
+            const category = document.getElementById('categoryInput').value;
+            const time = parseInt(document.getElementById('timeInput').value) || 30;
+            const ingredients = document.getElementById('ingredientsInput').value.split('\n').filter(i => i.trim() !== '');
+            const steps = document.getElementById('stepsInput').value.split('\n').filter(s => s.trim() !== '');
+
+            const existingIndex = recipes.findIndex(r => r.id === id);
+            const recipeData = { id, title, category, time, chef: selectedPokemonChef, ingredients, steps };
+
+            if (existingIndex > -1) {
+                recipes[existingIndex] = recipeData;
+            } else {
+                recipes.unshift(recipeData);
+            }
+
+            saveToStorage();
+            renderRecipes();
+            closeModal();
+        }
+
+        function editRecipe(id) {
+            const r = recipes.find(item => item.id === id);
+            if (!r) return;
+
+            document.getElementById('recipeId').value = r.id;
+            document.getElementById('titleInput').value = r.title;
+            document.getElementById('categoryInput').value = r.category;
+            document.getElementById('timeInput').value = r.time;
+            document.getElementById('ingredientsInput').value = r.ingredients.join('\n');
+            document.getElementById('stepsInput').value = r.steps.join('\n');
+            selectedPokemonChef = r.chef || 'pikachu';
+
+            document.getElementById('modalTitle').innerText = 'Edit Resep Baking 🧑‍🍳';
+            renderPokemonSelector();
+            document.getElementById('recipeModal').classList.remove('hidden');
+        }
+
+        function deleteRecipe(id) {
+            if (confirm('Yakin mau menghapus resep manis ini? 🥺')) {
+                recipes = recipes.filter(r => r.id !== id);
+                saveToStorage();
+                renderRecipes();
+            }
+        }
+
+        function viewRecipe(id) {
+            const r = recipes.find(item => item.id === id);
+            if (!r) return;
+            const chef = POKEMON_CHEFS.find(p => p.id === r.chef) || POKEMON_CHEFS[0];
+
+            const content = document.getElementById('viewContent');
+            content.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="${chef.img}" class="w-16 h-16 object-contain bg-pink-50 rounded-2xl p-1 border border-pink-200">
+                    <div>
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${chef.color}">🧑‍🍳 Head Chef ${chef.name}</span>
+                        <h2 class="text-2xl font-bold text-slate-800 font-fun mt-1">${r.title}</h2>
+                        <span class="text-xs text-rose-400 font-semibold">📁 ${r.category} • ⏱️ ${r.time} Menit</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-pink-50/60 p-4 rounded-2xl border border-pink-100">
+                        <h3 class="font-bold text-slate-700 font-fun mb-2 text-sm flex items-center gap-1.5">
+                            <span>🛒</span> Bahan - Bahan:
+                        </h3>
+                        <ul class="space-y-1.5 text-xs text-slate-600">
+                            ${r.ingredients.map(ing => `
+                                <li class="flex items-center gap-2">
+                                    <input type="checkbox" class="rounded text-rose-500 focus:ring-rose-400">
+                                    <span>${ing}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-100">
+                        <h3 class="font-bold text-slate-700 font-fun mb-2 text-sm flex items-center gap-1.5">
+                            <span>👩‍🍳</span> Langkah Pembuatan:
+                        </h3>
+                        <ol class="space-y-2 text-xs text-slate-600 list-decimal pl-4">
+                            ${r.steps.map(step => `<li class="pl-1">${step}</li>`).join('')}
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button onclick="startBakingTimer(${r.time})" class="bg-amber-400 hover:bg-amber-300 text-amber-900 font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 shadow-sm">
+                        ⏲️ Mulai Timer Baking (${r.time} Menit)
+                    </button>
+                    <button onclick="closeViewModal()" class="bg-rose-500 text-white font-bold px-5 py-2 rounded-xl text-xs">
+                        Selesai
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('viewModal').classList.remove('hidden');
+        }
+
+        function closeViewModal() {
+            document.getElementById('viewModal').classList.add('hidden');
+        }
+
+        // Backup & Restore System
+        function exportData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(recipes, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `Backup_Resep_Pokemon_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        function importData(e) {
+            const fileReader = new FileReader();
+            fileReader.onload = function (event) {
+                try {
+                    const imported = JSON.parse(event.target.result);
+                    if (Array.isArray(imported)) {
+                        recipes = imported;
+                        saveToStorage();
+                        renderRecipes();
+                        alert('Resep berhasil dipulihkan! 🎉');
+                    } else {
+                        alert('Format file tidak valid!');
+                    }
+                } catch (err) {
+                    alert('Gagal membaca file json!');
+                }
+            };
+            fileReader.readAsText(e.target.files[0]);
+        }
+
+        // Baking Timer Logic
+        let timerInterval = null;
+        let timerSeconds = 0;
+
+        function startBakingTimer(minutes) {
+            timerSeconds = minutes * 60;
+            updateTimerDisplay();
+            document.getElementById('timerWidget').classList.remove('hidden');
+            toggleTimer(true);
+        }
+
+        function toggleTimer(forceStart = false) {
+            const btn = document.getElementById('timerStartBtn');
+            if (timerInterval && !forceStart) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                btn.innerText = 'Start';
+                btn.className = 'bg-rose-500 hover:bg-rose-600 text-white px-2.5 py-0.5 rounded-lg text-xs font-bold';
+            } else {
+                if (forceStart && timerInterval) clearInterval(timerInterval);
+                timerInterval = setInterval(() => {
+                    if (timerSeconds > 0) {
+                        timerSeconds--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                        alert('⏰ Waktu Baking Selesai! Kue Pokémon-mu sudah matang! 🎉');
+                    }
+                }, 1000);
+                btn.innerText = 'Pause';
+                btn.className = 'bg-amber-500 hover:bg-amber-600 text-white px-2.5 py-0.5 rounded-lg text-xs font-bold';
+            }
+        }
+
+        function resetTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = null;
+            timerSeconds = 0;
+            updateTimerDisplay();
+            document.getElementById('timerStartBtn').innerText = 'Start';
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const s = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').innerText = `${m}:${s}`;
+        }
+
+        function closeTimerWidget() {
+            resetTimer();
+            document.getElementById('timerWidget').classList.add('hidden');
+        }
+
+        // Init
+        renderRecipes();
+    </script>
+</body>
+</html>
